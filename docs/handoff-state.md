@@ -17,11 +17,14 @@ Last updated: 2026-10-30 (session building the lesson from the research pack).
 - `node tests/browser-acceptance.mjs <base>` at the Pages subpath and at the root (28 / 28 each).
 
 ## Unresolved
-- Publication: the author created the empty public repository `Su3037/floorplanning-lesson6-sequence-pair`; the build session can read
-  it but pushes are refused until the Claude GitHub App has access to that repository.
 - The popular film needs the uncommitted audio file to re-render (`docs/BUILD.md`).
 - The submission reply is a draft only (`submission-draft.md`); not posted.
 
+- Live-site browser automation was not possible from the build container (host blocked); see `verification.md`.
+
+## Published
+- https://github.com/Su3037/floorplanning-lesson6-sequence-pair (Pages source: GitHub Actions)
+- https://su3037.github.io/floorplanning-lesson6-sequence-pair/
+
 ## Next action
-Once the repository is reachable: push `main`, set Pages source to GitHub Actions, wait for the workflow, then verify the deployed
-pages, film and slide responses, and fill in `verification.md` § Deployment.
+Post `submission-draft.md` on issue #22 only when the author says so.

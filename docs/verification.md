@@ -76,8 +76,14 @@ the typed `relation()` and `longest_path()` plus the three reference-filled task
 
 - Real devices (phones, Safari, Firefox): only Chromium with a 390 px mobile viewport was used.
 - Screen-reader testing.
-- Deployment: see below.
+- Browser automation against the deployed site: the build container cannot open `su3037.github.io` (egress proxy refuses the host),
+  so the 28 browser checks above ran on local servers that mimic the subpath and the root, not on the live site.
 
-## Deployment
+## Deployment: passed
 
-Not yet run. The repository `Su3037/floorplanning-lesson6-sequence-pair` exists but this session cannot push to it yet.
+- Workflow `pages` on `main` (commit `3826e62`): `test` job passed (the same node, cross-check and Python commands as above);
+  `deploy` job passed on its second attempt, after Pages was switched to "GitHub Actions" in the repository settings
+  (the first attempt stopped at `configure-pages` because Pages was not yet enabled).
+- Live responses checked by fetching (2026-10-30): home page (title “序列对 · Floorplanning · Lesson 6”), the English module page
+  (all nine sections), `media/m06-sequence-pair/film.json` (four films × zh/en with the durations above),
+  `story.zh.vtt` (valid WebVTT), `story.zh.mp4` (served as binary), the zh slide PDF (14 pages, “两行字母”).

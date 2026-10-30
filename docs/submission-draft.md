@@ -1,7 +1,7 @@
 # Submission draft (NOT posted)
 
 Draft reply for [yongfu-li/eda-learning#22](https://github.com/yongfu-li/eda-learning/issues/22). It has **not** been posted, and
-the issue has not been closed; that waits for the author's explicit instruction. Fill in the links only after the deployment is verified.
+the issue has not been closed; that waits for the author's explicit instruction. Both links were verified live on 2026-10-30.
 
 ---
 
