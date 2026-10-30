@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "moduleId": "m06-sequence-pair",
+  "upstreamId": "module02-05-sequence-pair",
+  "labId": "sequence-pair",
+  "displayOrder": 6,
+  "display": "Module 06",
+  "title": "序列对",
+  "topic": "Sequence-Pair",
+  "description": "布图规划的序列对表示法：两个排列给出每一对块的上下左右关系，关系变成水平与竖直约束图，最长路径动态规划算出压紧的坐标；合法、装得下与紧凑分开判断。",
+  "hook": "两行字母，怎么就决定了五个模块谁在左、谁在上？",
+  "cardText": "两个排列 → 四种关系 → 两张约束图 → 最长路径坐标。合法一定不重叠，但不一定装得下。",
+  "studyTime": "约 90–120 分钟（四部影片约 11 分钟、讲解 30 分钟、实验与挑战 30 分钟、Python 30 分钟）",
+  "sourceIssue": { "number": 22, "title": "Floorplanning - Lesson 6", "url": "https://github.com/yongfu-li/eda-learning/issues/22" },
+  "teacherFolder": "courses/learn_floorplanning/module02-05-sequence-pair（Lab 06 · sequence-pair）",
+  "teacherMappingStatus": "verified",
+  "prerequisitesText": "会读二维坐标与矩形面积；知道什么是有向图（不熟悉可先看[基础速查](../../foundations/index.html)）。不需要芯片设计背景。",
+  "nextText": "下一课（模拟退火布图）在序列对上做随机搜索：交换两块、重新求值、按代价决定接受与否。",
+  "review": "前面的课程用切分树（Polish 表达式）和 B\\*-tree 表示布图；它们各自有能表示与不能表示的摆放。本课的序列对只用**两个排列**，能表示任意不重叠的摆放，而且任何两个排列都给出一个不重叠的摆放。全课用教师的五块例子：A 3×2、B 2×3、C 2×2、D 3×1、E 2×2，固定边界 10 × 8。",
+  "objectives": [
+    { "id": "o1", "text": "说出布图规划的输入、输出和约束，解释为什么直接搜索坐标很麻烦、为什么要用表示法。", "where": ["m06-problem"] },
+    { "id": "o2", "text": "由 pos 与 neg 读出任意两块的相对位置（四种情况），并找出不合法序列对里的全部问题。", "where": ["m06-rule", "challenge-c1", "challenge-c2"] },
+    { "id": "o3", "text": "把关系变成水平 / 竖直约束图，写出每条边的不等式，说明约束图为什么没有环。", "where": ["m06-graphs", "challenge-c3"] },
+    { "id": "o4", "text": "用最长路径动态规划算出每块的坐标，解释为什么加前驱的尺寸、为什么取最大。", "where": ["m06-dp", "challenge-c4", "challenge-c5"] },
+    { "id": "o5", "text": "把完整、不重叠、装得下、紧凑四个问题分开回答，分清不随排列变化的量与会变化的量。", "where": ["m06-metrics", "challenge-c6"] },
+    { "id": "o6", "text": "推理改动排列对几何的影响（包括“不同写法、同一布局”），并在 Python 中实现校验、建图、DP 与指标。", "where": ["m06-encoding", "m06-pseudocode", "challenge-c7", "python"] }
+  ],
+  "problem": {
+    "input": "若干矩形块（固定宽 w、高 h，不旋转）；固定边界 W × H；两个排列 pos 与 neg。",
+    "output": "每块左下角坐标 (x, y)；水平约束图 H 与竖直约束图 V；完整性、重叠、是否装得下；包围盒与面积指标。",
+    "objective": "用两个排列表示块之间的相对位置，并求出满足全部相对位置的最紧凑（最小）坐标。",
+    "constraints": "pos 与 neg 必须是同一组块的排列；每对块恰好一种关系；H 边 i→j 要求 x[j] ≥ x[i] + w[i]，V 边 i→j 要求 y[j] ≥ y[i] + h[i]。",
+    "assumptions": "原点在左下角、y 向上；“pos 中在前、neg 中也在前 → 左边”，“pos 中在前、neg 中在后 → 下边”（教师约定）；贴边允许，正面积相交才算重叠。",
+    "stop": "两遍动态规划（x 一遍、y 一遍，各 n 步）都完成后输出；输入不合法时在第一步列出全部问题并停止。"
+  },
+  "filmTitle": "四部影片",
+  "filmNote": "科普片从一块芯片上的五个模块讲起：十个坐标变成两行字母，再一步步拆开它们怎样决定上下左右、怎样算出坐标、为什么合法的写法也会装不下。精讲片把教师示例从问题到坐标完整走一遍；进阶片回答“为什么”：为什么最长路径就是最紧凑的坐标、为什么取最大、为什么不会有环、为什么面积够也装不下、为什么多种写法对应同一布局、另一种坐标约定怎么换算；实验演示从真实页面录下，带你用一遍实验和在线编程。画面里的每个数都来自本页同一个引擎。",
+  "labTitle": "序列对工作台",
+  "labNote": "编辑两个排列（按钮、键盘或拖动），引擎立刻重新计算；单步看每一对块的关系、每条约束边、每一次取最大。改了排列，旧的运行记录就作废，不会和新结果混在一起。",
+  "challengeTip": "第 6、7 题检查的是你在题目里排出的序列对本身，由引擎重新计算后判定；照抄某个预设也要真的满足题目条件才算对。",
+  "quiz": [
+    { "id": "q1", "prompt": "布图里 A 在 B 左边，并且这是由序列对规定的关系。那么在 pos 和 neg 中……", "choices": ["A 在两个序列里都排在 B 前面", "A 只需在 pos 里排在 B 前面", "A 在 pos 里在前、在 neg 里在后", "看不出来"], "answer": 0, "explain": "左右关系要求两个序列里次序相同；在左边的那块在两个序列里都在前。" },
+    { "id": "q2", "prompt": "固定边界面积 80，块总面积 23。下面哪句话正确？", "choices": ["面积够，所以任何合法序列对都装得下", "面积够不代表装得下：pos = neg = A B C D E 宽 12，超出 10", "面积够时最长路径会自动把块折到第二行", "只有重叠的序列对才会装不下"], "answer": 1, "explain": "装不装得下看包围盒的宽和高，不看面积。14,400 个序列对里有 720 个装不进 10 × 8，它们都不重叠。" },
+    { "id": "q3", "prompt": "把一个序列对换成另一个，固定边界的密度（块面积 / 边界面积）会怎样？", "choices": ["变大", "变小", "不变，始终 28.75 %", "取决于包围盒"], "answer": 2, "explain": "块面积与边界面积都是固定的，比值与排列无关。会变化的是包围盒面积与利用率。" },
+    { "id": "q4", "prompt": "计算 x[j] 时，为什么对所有水平前驱取最大值而不是最小值？", "choices": ["为了让布局更宽", "每条边的不等式都必须成立，满足全部不等式的最小值就是这些下界里的最大者", "最小值会出现负数", "取最大和取最小结果一样"], "answer": 1, "explain": "取最小只满足了一条不等式；三块例子里取最小会让 B 压在 A 上。" },
+    { "id": "q5", "prompt": "两个不同的序列对，算出的坐标……", "choices": ["一定不同", "可能完全相同", "一定只有一块不同", "一定包围盒不同"], "answer": 1, "explain": "pos = A B C D E、neg = D A B C E 与教师示例的坐标完全相同。五块共 14,400 个序列对，只有 9,056 种不同布局。" },
+    { "id": "q6", "prompt": "为什么可以直接按 pos 的顺序做动态规划？", "choices": ["因为 pos 是按块的名字排序的", "因为 H 与 V 的每条边都从 pos 中靠前的块指向靠后的块，所以 pos 顺序是两张图共同的拓扑序", "因为 neg 不重要", "只是巧合，换一个例子就不行"], "answer": 1, "explain": "左关系要求 pos 中在前，下关系也要求 pos 中在前；沿着任何一条边走，pos 中的位置都在增加。" }
+  ],
+  "mistakes": [
+    {
+      "title": "把规则的上下颠倒（或混用两种约定）",
+      "wrong": "认为“pos 中在前、neg 中在后”表示在上面，于是教师示例里 D 被放到最下面。",
+      "why": "本课（与教师实现）规定的是“在下面”。另一种约定在一些教材里存在，但不能在同一个程序里混用。",
+      "counter": "教师示例中 A 在 pos 第 1、neg 第 2，D 在 pos 第 5、neg 第 1：A 在 pos 中在前、neg 中在后 → A 在 D 下边，D 的 y = 3。按颠倒的规则，D 会在 y = 0，A、B、C、E 被抬到 y = 1。",
+      "fix": "先写明约定。读另一种约定的资料时，把它的 (pos, neg) 交换成 (neg, pos) 再用本课的规则——测试证明两者坐标相同。"
+    },
+    {
+      "title": "动态规划取了最小值",
+      "wrong": "x[j] = min(x[i] + w[i])，以为“离得最近的前驱”说了算。",
+      "why": "每条边都是一条必须成立的不等式；只满足最近的一条，其他前驱就会被压住。",
+      "counter": "三块例子 pos = A C B、neg = C A B：B 的候选是 0 + 3 = 3（来自 A）和 0 + 2 = 2（来自 C）。取最小得 x[B] = 2，B 与 A 重叠 1 × 2。",
+      "fix": "x[j] = max(0, max over 前驱 i 的 x[i] + w[i])；y 同理。"
+    },
+    {
+      "title": "加了自己的宽，而不是前驱的宽",
+      "wrong": "x[E] = max(x[i]) + w[E]，或者 x[i] + w[E]。",
+      "why": "边 i → j 说的是 j 的左边缘不能越过 i 的右边缘，i 的右边缘是 x[i] + w[i]。",
+      "counter": "教师示例中 B 唯一的水平前驱是 A：正确的 x[B] = 0 + 3 = 3（A 的宽）。若加 B 自己的宽，得到 0 + 2 = 2，B 与 A 重叠 1 × 2；之后 C、E 也会跟着错位。",
+
+      "fix": "候选值永远是“前驱的坐标 + 前驱的尺寸”。实验的 DP 面板逐项列出这两个数。"
+    },
+    {
+      "title": "把“面积够”或“不重叠”当成“装得下”",
+      "wrong": "块面积 23 ≤ 边界面积 80，所以布局合法；或者“没有重叠，所以通过”。",
+      "why": "装得下看的是每块是否在边界之内，即包围盒的宽和高；序列对只保证不重叠。",
+      "counter": "pos = neg = A B C D E：不重叠，但宽 12 > 10。pos = A B C D E、neg = E D C B A：不重叠，但高 10 > 8。14,400 个序列对里 720 个这样。",
+      "fix": "分开报告：完整、不重叠、装得下、包围盒、面积指标。"
+    },
+    {
+      "title": "以为边界空余面积会随排列改善",
+      "wrong": "做了一次交换后报告“空余面积从 57 降到了 13”。",
+      "why": "57 是边界面积减块面积，与排列无关；13 是包围盒面积减块面积，那才是会变的量。两个数说的是不同区域。",
+      "counter": "全部 14,400 个序列对的边界空余都是 57、边界密度都是 28.75 %；包围盒面积从 24 到 36 以上都有。",
+      "fix": "写清楚“边界的”还是“包围盒的”；只用包围盒指标比较两种排列。"
+    }
+  ],
+  "limits": "- 块尺寸固定、不旋转；旋转与软模块是拓展，会让同一个序列对对应不同坐标。\n- 本课只把序列对变成坐标，不负责找好的序列对；搜索交给模拟退火等方法（下一课）。\n- 坐标压向左下角；装不下时只报告溢出，不会自动改排列。\n- 没有连线、引脚、时序、电源模型；包围盒与溢出只是几何指标，不是布线结果。\n- O(n²) 的教学实现适合几十块以内；文献中有 O(n log n) 的求值算法，本课没有实现。",
+  "pythonPackage": {
+    "title": "自己实现序列对求值",
+    "md": "**任务**（`starter.py`，五个函数）：\n\n1. `validate_pair(pos, neg, ids)`：列出全部问题（缺、重、未知、长度不同）。\n2. `relation(pos, neg, a, b)`：返回 `left` / `right` / `below` / `above`。\n3. `build_graphs(pos, neg)`：返回水平边与竖直边，每对块恰好一条。\n4. `longest_path(nodes, edges, size, rank)`：按拓扑序做 DP，取最大、加前驱尺寸。\n5. `metrics(modules, outline, placement)`：完整、重叠（贴边不算）、溢出、包围盒、面积指标。\n\n**提示一**：先只做两块的例子：pos = A B、neg = B A 时 A 在哪里？再推广到每一对。\n\n**提示二**：DP 的每一步写成“候选 = 前驱坐标 + 前驱尺寸，取最大，再与 0 比较”。检查器会在 300 个随机序列对上验证每条边都成立、每块都压紧，并把全部 14,400 个五块序列对算一遍。"
+  },
+  "credits": {
+    "instructor": {
+      "name": "Yongfu Li · learn_floorplanning",
+      "repository": "https://github.com/yongfu-li/eda-learning/tree/003bcd49e3794e6cfd2680181cdbd347d673ad07/courses/learn_floorplanning/module02-05-sequence-pair",
+      "commit": "003bcd49e3794e6cfd2680181cdbd347d673ad07"
+    },
+    "kept": [
+      "五块例子 A–E 的尺寸、10 × 8 固定边界与教师示例序列对 pos = A B C E D、neg = D A B C E（CC BY 4.0，已注明修改）。",
+      "坐标约定（左下原点、y 向上、“pos 中在前、neg 中在后 → 下边”）与 EXAMPLES.md 的伪代码骨架（关系 → H/V → 最长路径），本课逐行展开。",
+      "“浏览器实验 + 自己实现”两条路线：本课的实验与 Python 练习共用同一份 fixture。",
+      "STEPS.md 第 5 步“邻居就是排列的改动”：本课作为模拟退火的预告保留。"
+    ],
+    "licenseNote": "教师课程材料以 CC BY 4.0 发布；本课沿用其例子数据、约定与伪代码思路，并重写了全部讲解、代码、实验、影片与课件，修改说明见仓库 NOTICE.md。教师平台的 JavaScript 只用于了解行为，没有复制。Murata 等人的论文只引用、不转载图片。科普片的配乐若使用作者指定的第三方录音，它不在本课程许可范围内，本课程不授予其任何使用权，也不提供单独的音轨；其余影片的配乐为本课程原创合成（CC BY 4.0）。",
+    "references": [
+      "H. Murata, K. Fujiyoshi, S. Nakatake, Y. Kajitani. VLSI module placement based on rectangle-packing by the sequence-pair. *IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems*, 15(12):1518–1524, 1996. [PDF（作者网站外的镜像，未在本环境中验证可访问性）](https://limsk.ece.gatech.edu/book/papers/sequence-pair.pdf)",
+      "X. Tang, D. F. Wong. FAST-SP: a fast algorithm for block placement based on sequence pair. *Proc. ASP-DAC*, 2001.（O(n log n) 求值；本课未实现）",
+      "S. N. Adya, I. L. Markov. Fixed-outline floorplanning: enabling hierarchical design. *IEEE Transactions on VLSI Systems*, 11(6), 2003.",
+      "教师原课程 [module02-05-sequence-pair](https://github.com/yongfu-li/eda-learning/tree/003bcd49e3794e6cfd2680181cdbd347d673ad07/courses/learn_floorplanning/module02-05-sequence-pair)（固定提交 003bcd4）"
+    ]
+  },
+  "codelab": true
+}

@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:03.200 --> 00:00:11.667
+This is the lesson's lab: the two rows are pos and neg, starting from the instructor's example ABCED / DABCE.
+
+2
+00:00:11.667 --> 00:00:20.467
+The result is judged item by item: complete, no overlap and fits are separate. This pair gives 9 × 4, and it fits.
+
+3
+00:00:20.467 --> 00:00:28.667
+Back to the start and step: A comes before B in both sequences, so A is left of B, giving the H edge A→B.
+
+4
+00:00:28.667 --> 00:00:37.200
+Three more steps to A and D: A is first in pos but D is first in neg; the lines cross, A is below D, a V edge.
+
+5
+00:00:37.200 --> 00:00:46.133
+Jump to the end and click block E: x[E] = 7, set by C. Of its three horizontal predecessors, the largest bound wins.
+
+6
+00:00:46.133 --> 00:00:57.000
+Switch to the preset “valid but overflows vertically”: ABCDE / EDCBA, every pair is above/below, a 3 × 10 stack. No overlap, but it does not fit.
+
+7
+00:00:57.000 --> 00:01:07.200
+Back to the instructor's example: select D in pos and move it one place left, ABCDE / DABCE. The relation changed, the packing did not.
+
+8
+00:01:07.200 --> 00:01:15.200
+“Random neighbour” is the basic annealing move: swap two blocks at random. Undo if you do not like it.
+
+9
+00:01:15.200 --> 00:01:24.667
+The code lab: your code runs in the browser, with no Python to install. pack() and trace() are written; five tasks are left.
+
+10
+00:01:24.667 --> 00:01:30.800
+Run the checks first: nothing is written yet, so the result is INCOMPLETE.
+
+11
+00:01:30.800 --> 00:01:40.000
+Task 2: where a sits relative to b. The same order in both sequences means left/right; opposite orders mean below/above.
+
+12
+00:01:40.000 --> 00:01:56.894
+Task 4: the longest path. In topological order, take the largest “predecessor coordinate + predecessor size”, and record who set it.
+
+13
+00:01:56.894 --> 00:02:07.627
+For this demo, tasks 1, 3 and 5 (validate, build the graphs, metrics) are filled in from the reference; then run the checks: everything passes.
+
+14
+00:02:07.627 --> 00:02:18.694
+Below, your functions run on eight cases, compared block by block with the course engine: coordinates, the chosen predecessor, fit and bounding box.
+
+15
+00:02:18.694 --> 00:02:26.761
+Click the “three blocks” row: B starts at x = 3; your code on the left, the course engine on the right.
+
+16
+00:02:26.761 --> 00:02:33.894
+Finally, try the challenges to check you really understand. Results stay in your browser.

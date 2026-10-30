@@ -1,0 +1,233 @@
+{
+ "title": "Sequence-Pair",
+ "slides": [
+  {
+   "id": "m06-title",
+   "layout": "title",
+   "title": "Two Rows of Letters",
+   "subtitle": "Sequence-Pair · Floorplanning lesson 6",
+   "byline": "Floorplanning · Lesson 6 · example and convention from the instructor's learn_floorplanning (CC BY 4.0)",
+   "scene": "k00-title",
+   "transcript": "This lesson is about the sequence pair: two permutations describe a floorplan, and constraint graphs plus longest paths turn it into coordinates. The whole lesson uses the instructor's five blocks inside a 10 × 8 outline."
+  },
+  {
+   "id": "m06-problem",
+   "title": "The problem",
+   "figure": "problem",
+   "scene": "k01-problem",
+   "objectives": [
+    "o1"
+   ],
+   "bullets": [
+    "Input: five rectangles (fixed size, no rotation), a 10 × 8 outline, permutations pos and neg",
+    "Output: lower-left (x, y) of every block; graphs H and V; bounding box and metrics",
+    "Convention: origin lower-left, y up (instructor's common/pack.py)",
+    "Why not search coordinates: almost every combination overlaps"
+   ],
+   "note": "Block area 23, outline area 80: enough area does not mean it fits.",
+   "transcript": "The input is five rectangles, a 10 by 8 outline and two permutations; the output is each block's lower-left corner. The origin is lower-left with y up. Searching coordinates directly is hard because almost any change makes blocks overlap; the sequence pair records relative positions as discrete permutations."
+  },
+  {
+   "id": "m06-rule",
+   "title": "Two permutations, four relations",
+   "figure": "rule",
+   "scene": "k02-rule",
+   "objectives": [
+    "o2"
+   ],
+   "bullets": [
+    "First in both → left of: x[b] ≥ x[a] + w[a]",
+    "First in pos, second in neg → below: y[b] ≥ y[a] + h[a]",
+    "Rule of thumb: same order → left/right; opposite → below/above",
+    {
+     "text": "The other convention says 'above': same as swapping pos and neg",
+     "color": "gold"
+    }
+   ],
+   "transcript": "Any two blocks have an order in each permutation. Same order means left/right, with the first one on the left; opposite orders mean below/above, with the one first in pos below. Some textbooks say above instead, which is the same as swapping the two sequences."
+  },
+  {
+   "id": "m06-two",
+   "title": "The smallest example: two blocks",
+   "figure": "two",
+   "objectives": [
+    "o2"
+   ],
+   "bullets": [
+    "A 3 × 2, B 2 × 3",
+    "pos = A B, neg = A B: A left of B, B starts at x = 3",
+    "pos = A B, neg = B A: A below B, B starts at y = 2",
+    "Every pair has exactly one relation, never none, never two"
+   ],
+   "transcript": "Two blocks show the rule most clearly. With both sequences A B, A is left of B and B starts at x = 3; with neg = B A, A is below B and B starts at y = 2."
+  },
+  {
+   "id": "m06-pairs",
+   "title": "The ten relations of the instructor's pair",
+   "figure": "pairs",
+   "scene": "k03-graphs",
+   "objectives": [
+    "o2",
+    "o3"
+   ],
+   "bullets": [
+    "pos = A B C E D, neg = D A B C E",
+    "5 blocks → 5 × 4 / 2 = 10 pairs",
+    "6 left/right: A, B, C, E in a row",
+    "4 below/above: D above the other four"
+   ],
+   "transcript": "Write out all ten pairs of the instructor's example. A, B, C and E keep the same order pairwise, so they are left/right. D is first in neg and last in pos, opposite to every other block, so all four are below D."
+  },
+  {
+   "id": "m06-graphs",
+   "title": "Constraint graphs H and V",
+   "figure": "graphs",
+   "scene": "k03-graphs",
+   "objectives": [
+    "o3"
+   ],
+   "bullets": [
+    "H: i left of j → edge i → j, x[j] ≥ x[i] + w[i]",
+    "V: i below j → edge i → j, y[j] ≥ y[i] + h[i]",
+    "Each pair in one graph only: 6 in H, 4 in V",
+    "Every edge points forward in pos → no cycle"
+   ],
+   "note": "A → E is implied by A → B → C → E; drawn dashed, still used.",
+   "transcript": "Left/right relations go into H, below/above into V. Each edge is an inequality: the later block clears the earlier one. Both 'left of' and 'below' require being first in pos, so along any edge the pos position grows and there can be no cycle."
+  },
+  {
+   "id": "m06-why-max",
+   "title": "Why add the predecessor's width, why the maximum",
+   "figure": "whymax",
+   "scene": "a02-max",
+   "objectives": [
+    "o4"
+   ],
+   "bullets": [
+    "Edge i → j: j's left side stays right of i's right side x[i] + w[i]",
+    "Every incoming edge is a lower bound; all must hold",
+    "Smallest value meeting all bounds = the largest bound",
+    {
+     "text": "Three blocks: the minimum 2 makes B overlap A",
+     "color": "red"
+    }
+   ],
+   "transcript": "An edge says j's left side must not cross i's right side, so the width added is the predecessor's. Every incoming edge is a lower bound and all must hold, so take the maximum. In the three-block example B's candidates are 3 and 2; the minimum, 2, puts B on top of A."
+  },
+  {
+   "id": "m06-dp-x",
+   "title": "Computing x in pos order",
+   "figure": "dpx",
+   "scene": "k04-dpx",
+   "objectives": [
+    "o4"
+   ],
+   "bullets": [
+    "x[A] = 0, x[B] = 3, x[C] = 5",
+    "x[E] = max(0 + 3, 3 + 2, 5 + 2) = 7",
+    "x[D] = 0: D has no horizontal predecessor",
+    "This is the longest path in H"
+   ],
+   "transcript": "Compute x block by block in pos order. A has no predecessor: 0. B clears A: 3. C clears A and B: the maximum, 5. E's candidates are 3, 5 and 7: 7. D is above or below everything, so x = 0."
+  },
+  {
+   "id": "m06-dp-y",
+   "title": "Then y",
+   "figure": "dpy",
+   "scene": "k05-dpy",
+   "objectives": [
+    "o4"
+   ],
+   "bullets": [
+    "A, B, C, E have no vertical predecessor: y = 0",
+    "y[D] = max(2, 3, 2, 2) = 3: the tallest, B, decides",
+    {
+     "text": "The instructor's GOLDEN_PACK (D at y = 2) is a separate illustration, not this pair's output",
+     "color": "gold"
+    }
+   ],
+   "transcript": "Vertically only D has predecessors: A, B, C and E are all below it. The candidates are their heights 2, 3, 2, 2; the maximum is 3. Note that GOLDEN_PACK in the instructor's goldens.py puts D at y = 2; that is not what this pair computes."
+  },
+  {
+   "id": "m06-packing",
+   "title": "The result and four questions",
+   "figure": "packing",
+   "scene": "k06-metrics",
+   "objectives": [
+    "o5"
+   ],
+   "bullets": [
+    "Complete: each block once",
+    "No overlap: guaranteed by the pair",
+    "Fits: box 9 × 4 ≤ 10 × 8",
+    "Compact: 36, 13 unused, utilisation 63.89 %"
+   ],
+   "transcript": "Once computed there are four separate questions: complete, overlapping, fitting, compact. The instructor's example passes all of them: box 9 by 4, area 36, utilisation about 63.89 %."
+  },
+  {
+   "id": "m06-overflow",
+   "title": "Valid ≠ fits; constants and variables",
+   "figure": "overflow",
+   "scene": "k07-overflow",
+   "objectives": [
+    "o5"
+   ],
+   "bullets": [
+    "pos = neg = A B C D E → 12 × 3, too wide",
+    "neg reversed → 3 × 10, too tall",
+    "14,400 pairs: all overlap-free, 13,680 fit, 720 do not",
+    {
+     "text": "Outline unused 57, density 28.75 %: the same for every pair",
+     "color": "gold"
+    }
+   ],
+   "transcript": "Identical permutations put the five blocks in a row 12 wide: no fit. Reversing neg stacks them 10 tall: no fit either. Neither overlaps. 720 of all 14,400 pairs do not fit. Outline unused 57 and density 28.75 % are the same for every pair and cannot compare them; the bounding box is what changes."
+  },
+  {
+   "id": "m06-encoding",
+   "title": "Changing a permutation",
+   "figure": "encoding",
+   "scene": "a05-twins",
+   "objectives": [
+    "o6"
+   ],
+   "bullets": [
+    "Swap E and D in pos: the relation changes, the coordinates do not",
+    "Swap D and A in neg: still a 9 × 4 box, a different packing",
+    "14,400 pairs give only 9,056 packings; the instructor's packing has 3 encodings",
+    "Search (annealing) walks between these neighbours"
+   ],
+   "transcript": "Changing a permutation need not move any block. Swapping E and D in pos changes their relation, but both relations hold in this packing, so the coordinates are identical. Conversely, the same box can hide a different packing. Five blocks have 14,400 pairs but only 9,056 packings."
+  },
+  {
+   "id": "m06-pseudo",
+   "title": "Pseudocode and cost",
+   "figure": "pseudo",
+   "objectives": [
+    "o6"
+   ],
+   "bullets": [
+    "Line 1: list every problem",
+    "Lines 2–4: one edge per pair",
+    "Lines 5–7: two DP passes in pos order",
+    "Line 8: report four questions separately",
+    "Cost O(n²); FAST-SP reaches O(n log n) (not implemented)"
+   ],
+   "transcript": "Eight lines: validate, build one edge per pair, two DP passes in pos order for x and y, report. There are n(n−1)/2 pairs and the DP looks at as many edges, so the cost is O(n²). Faster algorithms exist in the literature; this lesson does not implement them."
+  },
+  {
+   "id": "m06-limits",
+   "layout": "statement",
+   "title": "Limits and next steps",
+   "objectives": [
+    "o6"
+   ],
+   "lines": [
+    "A sequence pair writes relative positions as two permutations; coordinates come from longest paths.",
+    "Here: fixed sizes, no rotation; evaluation only, no search; no wires, timing or power.",
+    "Next: simulated annealing over sequence pairs. Source: Murata et al., IEEE TCAD 1996."
+   ],
+   "transcript": "Finally, the limits. This lesson only turns a sequence pair into coordinates: fixed sizes, no rotation, no search for a good pair, and no model of wires, timing or power. The next lesson runs simulated annealing over sequence pairs. The sequence pair comes from Murata et al., 1996."
+  }
+ ]
+}

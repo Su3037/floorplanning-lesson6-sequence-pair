@@ -1,0 +1,23 @@
+{
+  "terms": [
+    {"id": "floorplan", "zh": "布图规划", "en": "floorplanning", "meaning": "在芯片区域里给每个矩形模块定下位置（以及形状），让它们互不重叠、装进边界，并尽量紧凑、连线短。", "notConfuse": "布局（placement）通常指成千上万个标准单元；布图规划处理的是少量大模块。", "anchor": "m06-problem"},
+    {"id": "module", "zh": "模块（块）", "en": "module / block", "meaning": "一个固定宽 w、高 h 的矩形，本课用字母 A–E 命名。坐标 (x, y) 是它的左下角。", "notConfuse": "本课的 Module 06 是课程单元的名字，与“模块”这个几何对象无关。", "anchor": "m06-problem"},
+    {"id": "outline", "zh": "固定边界", "en": "fixed outline", "meaning": "允许放置的矩形区域 W × H，本课是 10 × 8。所有块都必须在 [0, W] × [0, H] 里。", "notConfuse": "包围盒是块实际占到的范围，会随排列变化；边界是给定的、不变的。", "anchor": "m06-metrics"},
+    {"id": "sequence-pair", "zh": "序列对", "en": "sequence pair", "meaning": "同一组块 id 的两个排列 (pos, neg)。任意两块在两个排列里的先后，决定它们是左右关系还是上下关系。", "notConfuse": "序列对表示的是相对位置，不直接写坐标；坐标要由最长路径算出来。", "anchor": "m06-rule"},
+    {"id": "pos-neg", "zh": "pos 与 neg", "en": "pos and neg (Γ⁺ and Γ⁻)", "meaning": "序列对的两个排列。文献也写作 Γ⁺、Γ⁻ 或 S1、S2。", "notConfuse": "有的教材把上下规则镜像定义；那等于把本课的 pos 与 neg 交换，见 § limits。", "anchor": "m06-rule"},
+    {"id": "relation", "zh": "相对位置关系", "en": "relative position", "meaning": "两块之间四种之一：左、右、下、上。本课约定：两个排列都在前 → 左边；pos 在前、neg 在后 → 下边。", "notConfuse": "“左边”不要求紧挨着，只要求 x[j] ≥ x[i] + w[i]。", "anchor": "m06-rule"},
+    {"id": "h-graph", "zh": "水平约束图", "en": "horizontal constraint graph (H)", "meaning": "每个“i 在 j 左边”的关系画一条边 i → j，含义 x[j] ≥ x[i] + w[i]。", "notConfuse": "H 图里一块没有入边不代表它在最左，只代表没有块必须在它左边，所以 x 取 0。", "anchor": "m06-graphs"},
+    {"id": "v-graph", "zh": "竖直约束图", "en": "vertical constraint graph (V)", "meaning": "每个“i 在 j 下边”的关系画一条边 i → j，含义 y[j] ≥ y[i] + h[i]。", "notConfuse": "每对块只进 H、V 中的一张图，不会两张都进。", "anchor": "m06-graphs"},
+    {"id": "dag", "zh": "有向无环图", "en": "directed acyclic graph (DAG)", "meaning": "边有方向、沿边走永远回不到起点的图。H、V 都是 DAG，因为每条边都在 pos 中从前指向后。", "notConfuse": "无环是由排列保证的，不需要另外检查。", "anchor": "m06-graphs"},
+    {"id": "longest-path", "zh": "最长路径", "en": "longest path", "meaning": "在带权 DAG 上从起点走到某点的最大总权重。本课权重是前驱的宽（或高），结果就是最小的合法坐标。", "notConfuse": "取最大不是为了“拉开”，而是因为每条入边都是下限，必须同时满足。", "anchor": "m06-dp"},
+    {"id": "topological", "zh": "拓扑序", "en": "topological order", "meaning": "让每条边都从前指向后的点的排列。pos 本身就是 H 与 V 的共同拓扑序。", "notConfuse": "拓扑序可能不唯一；本课按 pos 顺序是为了让轨迹可预测。", "anchor": "m06-dp"},
+    {"id": "packing", "zh": "布局（压紧结果）", "en": "packing", "meaning": "由序列对算出的全部坐标。每块都尽量靠左、靠下，直到被某个约束挡住。", "notConfuse": "不同序列对可以得到同一个布局：教师示例有 3 个序列对共用同一布局。", "anchor": "m06-encoding"},
+    {"id": "bbox", "zh": "包围盒", "en": "bounding box", "meaning": "包住所有块的最小矩形，从原点到 (max(x+w), max(y+h))。教师示例是 9 × 4。", "notConfuse": "包围盒小不等于装得下：12 × 3 面积 36 也很小，但宽超过 10。", "anchor": "m06-metrics"},
+    {"id": "overlap", "zh": "重叠", "en": "overlap", "meaning": "两块的交集面积为正。只是边或角相碰（贴边）不算重叠。", "notConfuse": "序列对算出的布局一定不重叠；要单独检查的是装不装得下。", "anchor": "m06-metrics"},
+    {"id": "fit", "zh": "装得下", "en": "fits the outline", "meaning": "包围盒的宽 ≤ W 且高 ≤ H。五块例子的 14,400 个序列对里 13,680 个装得下。", "notConfuse": "不重叠与装得下是两个问题；一个合法序列对也可能溢出。", "anchor": "m06-metrics"},
+    {"id": "density", "zh": "边界占用率 / 空白面积", "en": "outline density / dead space", "meaning": "块总面积 ÷ 边界面积（23 / 80 = 28.75 %），以及 80 − 23 = 57。", "notConfuse": "这两个数对所有排列都相同，不能用来比较两个序列对；要比较用包围盒面积或利用率。", "anchor": "m06-metrics"},
+    {"id": "util", "zh": "包围盒利用率", "en": "bounding-box utilisation", "meaning": "块总面积 ÷ 包围盒面积。教师示例 23 / 36 = 63.89 %，会随排列变化。", "notConfuse": "利用率高的布局可能装不下边界，要和“装得下”一起看。", "anchor": "m06-metrics"},
+    {"id": "neighbour", "zh": "邻居（排列改动）", "en": "neighbour move", "meaning": "交换一个排列里的两块，或两个排列同时交换，得到一个新序列对。模拟退火就在这些邻居之间随机走。", "notConfuse": "一次改动可能完全不改变布局，也可能改变很多块。", "anchor": "m06-encoding"}
+  ],
+  "pronunciationMd": "### 专名读法（若日后制作配音版）\n\n| 写法 | 建议读法 |\n| --- | --- |\n| Sequence-Pair | “序列对”，首次给英文 |\n| pos、neg | 读作 “pos”“neg”，或“正序列”“负序列” |\n| Γ⁺、Γ⁻ | “伽马加”“伽马减” |\n| Murata | 村田（Murata） |\n| DAG | 逐个字母读 |\n\n本课影片无配音，这张表只为可选旁白版准备；没有试听就不声称读法自然。"
+}

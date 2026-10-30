@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Credits · Floorplanning · Lesson 6</title>
+<meta name="description" content="Floorplanning lesson 6: two permutations, pos and neg, describe a rectangle layout; constraint graphs and longest paths turn them into coordinates. Lesson, four films, numbered slides, an in-browser lab with editable permutations, challenges and Python exercises.">
+<link rel="alternate" hreflang="zh-CN" href="../../credits/index.html">
+<link rel="alternate" hreflang="en" href="../../en/credits/index.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2032%2032%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2226%22%20height%3D%2226%22%20rx%3D%222%22%20fill%3D%22none%22%20stroke%3D%22%23946a17%22%20stroke-width%3D%221.3%22%20stroke-dasharray%3D%222.4%202%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%2217%22%20width%3D%229%22%20height%3D%2210%22%20fill%3D%22%230f6b5c%22%2F%3E%3Crect%20x%3D%2215%22%20y%3D%2220%22%20width%3D%227%22%20height%3D%227%22%20fill%3D%22%232f5e9e%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%2211%22%20width%3D%2211%22%20height%3D%225%22%20fill%3D%22%23946a17%22%2F%3E%3Crect%20x%3D%2223%22%20y%3D%2221%22%20width%3D%225%22%20height%3D%226%22%20fill%3D%22%236b4c9a%22%2F%3E%3C%2Fsvg%3E">
+<link rel="preload" href="../../assets/fonts/newsreader-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/course.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar"><div class="wrap">
+<a class="brand" href="../index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="3" width="26" height="26" rx="2" fill="none" stroke="#946a17" stroke-width="1.3" stroke-dasharray="2.4 2"/><rect x="5" y="17" width="9" height="10" fill="#0f6b5c"/><rect x="15" y="20" width="7" height="7" fill="#2f5e9e"/><rect x="5" y="11" width="11" height="5" fill="#946a17"/><rect x="23" y="21" width="5" height="6" fill="#6b4c9a"/></svg><span class="brand-name">Floorplanning · Lesson 6</span><span class="brand-sub">Sequence-Pair Studio</span></a>
+<nav class="topnav" aria-label="Course"><a href="../index.html">Overview</a><a href="../modules/m06-sequence-pair/index.html">Module 06</a><a href="../foundations/index.html">Foundations</a><a href="../glossary/index.html">Glossary</a><a href="../guide/index.html">Challenges</a><a href="../credits/index.html" aria-current="page">Credits</a><a href="../progress/index.html">Progress</a></nav>
+<div class="lang-switch" role="group" aria-label="Language"><a href="../../credits/index.html" hreflang="zh-CN" lang="zh-CN" data-lang-link="zh">中文</a><span aria-current="true">EN</span></div>
+</div></header>
+<main id="main"><section class="section page"><div class="wrap"><div class="prose"><p>&lt;p class=&quot;eyebrow&quot;&gt;Credits&lt;/p&gt;</p>
+<h2>Credits</h2>
+<p>This lesson answers <a href="https://github.com/yongfu-li/eda-learning/issues/22" rel="noopener">yongfu-li/eda-learning issue #22</a>, “Floorplanning - Lesson 6”. Its topic is the sixth lab of the instructor’s learn_floorplanning course: the sequence pair (catalogue id <code>module02-05-sequence-pair</code>, lab id <code>sequence-pair</code>).</p>
+<h3>The instructor’s course (CC BY 4.0)</h3>
+<table><thead><tr><th>Item</th><th>Detail</th></tr></thead><tbody><tr><td>Author</td><td>Yongfu Li · learn_floorplanning</td></tr><tr><td>Source</td><td><a href="https://github.com/yongfu-li/eda-learning/tree/003bcd49e3794e6cfd2680181cdbd347d673ad07/courses/learn_floorplanning/module02-05-sequence-pair" rel="noopener">module02-05-sequence-pair (pinned at 003bcd4)</a></td></tr><tr><td>Licence</td><td>CC BY 4.0</td></tr><tr><td>Kept</td><td>the five blocks A–E and their sizes, the 10 × 8 outline, the pair pos = A B C E D / neg = D A B C E; the coordinate convention; the pseudocode outline; the two tracks “browser lab + implement it yourself”</td></tr><tr><td>Changed</td><td>the outline spelling <code>{W, H}</code> is normalised to <code>{w, h}</code>; the <code>GOLDEN_PACK</code> layout (D at y = 2), which is not this pair’s output, is not taught; fit and non-overlap are reported separately; recall-only quiz items are replaced</td></tr></tbody></table>
+<p>The lesson, engine, lab, challenges, films, slides and Python exercises are new. The instructor’s platform JavaScript was read only to understand the original lab’s behaviour and was not copied. Itemised changes are in the repository’s <a href="https://github.com/Su3037/floorplanning-lesson6-sequence-pair/blob/main/NOTICE.md" rel="noopener">NOTICE.md</a>.</p>
+<h3>Paper and further reading</h3>
+<ul><li>H. Murata, K. Fujiyoshi, S. Nakatake, Y. Kajitani. VLSI module placement based on rectangle-packing by the sequence-pair. <em>IEEE TCAD</em>, 15(12):1518–1524, 1996. The original sequence-pair paper. Cited only; none of its figures are reproduced.</li><li>X. Tang, D. F. Wong. FAST-SP: a fast algorithm for block placement based on sequence pair. <em>ASP-DAC</em>, 2001. O(n log n) evaluation, not implemented here.</li><li>S. N. Adya, I. L. Markov. Fixed-outline floorplanning: enabling hierarchical design. <em>IEEE TVLSI</em>, 11(6), 2003. Sequence-pair search under a fixed outline (Parquet).</li></ul>
+<h3>This lesson’s licences</h3>
+<table><thead><tr><th>Part</th><th>Licence</th></tr></thead><tbody><tr><td>Code (<code>site/</code>, <code>scripts/</code>, <code>python/</code>, <code>tests/</code>)</td><td>MIT</td></tr><tr><td>Lesson text, slides, film visuals, example data</td><td>CC BY 4.0 (the example data is adapted from the instructor’s course, also CC BY 4.0)</td></tr><tr><td>Font subsets</td><td>their own open font licences, see THIRD_PARTY_NOTICES.md</td></tr><tr><td>In-browser Python (Pyodide), code editor (CodeMirror)</td><td>their own licences, see THIRD_PARTY_NOTICES.md</td></tr><tr><td>Explainer-film music</td><td>see below</td></tr></tbody></table>
+<h3>Music</h3>
+<p>The concise, advanced and lab-walkthrough films use music synthesised by this lesson’s scripts, released with the visuals under CC BY 4.0. If the explainer film uses a third-party recording chosen by the author, that recording is <strong>outside this lesson’s licences</strong>: no rights to it are granted, and no audio file of it is in the repository. To reuse the visuals, use the version without music.</p>
+<h3>Production</h3>
+<p>Course author Su3037. Production was assisted by Claude (Anthropic), which drafted text and code and generated the films and slides; the author chose the topic, reviewed and published. Every number is computed by the engine and re-checked by tests, logged in <code>docs/verification.md</code>.</p></div></div></section></main>
+<footer class="footer"><div class="wrap">
+<p>Floorplanning · Lesson 6 · Sequence-Pair. A teaching example, not a production floorplanner. The examples and convention come from the instructor’s learn_floorplanning course (CC BY 4.0), credited on the <a href="../credits/index.html">Credits</a> page; <a href="https://github.com/Su3037/floorplanning-lesson6-sequence-pair">source code</a>: code MIT, content CC BY 4.0.</p>
+<p>Built with the Learning Clustering <a href="https://github.com/Su3037/learning-clustering/tree/main/course-playbook">course playbook</a>.</p>
+<p><button class="btn quiet small" type="button" data-pref="reduceMotion">Reduce motion</button> <button class="btn quiet small" type="button" data-pref="sound">Sound</button> · Content version 2026.10.30-1</p>
+</div></footer>
+<script type="module">import { initShell } from '../../assets/core.js'; initShell();</script>
+
+</body>
+</html>

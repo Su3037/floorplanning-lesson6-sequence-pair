@@ -1,0 +1,10 @@
+{
+ "title": {"zh": "实验演示", "en": "Lab Walkthrough"},
+ "subtitle": {"zh": "实验台 · 在线编程 · 挑战", "en": "THE LAB  ·  THE CODE LAB  ·  CHALLENGES"},
+ "kicker": {"zh": "MODULE 06 · 序列对", "en": "MODULE 06 · SEQUENCE-PAIR"},
+ "brand": {"zh": "Floorplanning · Lesson 6 · 序列对", "en": "Floorplanning · Lesson 6 · Sequence-Pair"},
+ "why": {"zh": "从真实页面录下的操作演示：单步看 A、B 同序得到 H 边、A、D 交叉得到 V 边，点块 E 看 x[E] = 7 由 C 决定；换到 ABCDE / EDCBA 叠成 3 × 10 装不下；在 pos 里移动 D 得到同一布局的另一种编码；再在浏览器里写 relation() 和 longest_path() 并通过全部检查，8 个例子与课程引擎逐块一致。",
+         "en": "Recorded from the real page: stepping to the H edge A→B (same order) and the V edge A→D (crossed order), clicking block E to see x[E] = 7 set by C; ABCDE / EDCBA stacking to 3 × 10 and overflowing; moving D in pos to get another encoding of the same packing; then writing relation() and longest_path() in the browser, passing every check, and matching the course engine block by block on 8 cases."},
+ "posterShot": 3,
+ "order": ["story", "concise", "advanced", "lab"]
+}

@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:03.400 --> 00:00:08.000
+Every edge into E is a lower bound.
+
+2
+00:00:08.000 --> 00:00:12.400
+Put the bounds on a line: 3, 5, 7.
+
+3
+00:00:12.400 --> 00:00:17.200
+To meet all three, x[E] must be 7 or more.
+
+4
+00:00:17.200 --> 00:00:21.800
+The smallest feasible value is the longest path.
+
+5
+00:00:22.200 --> 00:00:27.000
+Three blocks: A below C; A and C left of B.
+
+6
+00:00:27.000 --> 00:00:32.600
+The minimum, 2, meets only C's bound; B lands on A.
+
+7
+00:00:32.600 --> 00:00:36.600
+The maximum, 3, meets both.
+
+8
+00:00:37.000 --> 00:00:40.600
+Could a constraint graph have a cycle?
+
+9
+00:00:40.600 --> 00:00:44.800
+Label every block with its place in pos.
+
+10
+00:00:44.800 --> 00:00:49.400
+Both 'left of' and 'below' need first in pos.
+
+11
+00:00:49.400 --> 00:00:54.000
+Along any edge the place grows: no cycle.
+
+12
+00:00:54.400 --> 00:00:59.200
+Compute all 14,400 pairs.
+
+13
+00:00:59.200 --> 00:01:02.200
+Not one overlaps.
+
+14
+00:01:02.200 --> 00:01:06.000
+But 720 do not fit 10 × 8.
+
+15
+00:01:06.000 --> 00:01:11.267
+Outline unused and density never change; they cannot compare pairs.
+
+16
+00:01:11.667 --> 00:01:16.689
+Swap E and D in pos: the E–D relation changes.
+
+17
+00:01:16.689 --> 00:01:21.489
+Yet the coordinates are identical: both relations hold.
+
+18
+00:01:21.489 --> 00:01:26.289
+Conversely, the same box can hide a different packing.
+
+19
+00:01:26.289 --> 00:01:31.978
+14,400 pairs, only 9,056 packings.
+
+20
+00:01:32.378 --> 00:01:36.578
+Some textbooks define 'below' as 'above'.
+
+21
+00:01:36.578 --> 00:01:42.489
+It is a vertical mirror: swap pos and neg.
+
+22
+00:01:42.489 --> 00:01:46.089
+Check the convention before you read on.
+
+23
+00:01:46.489 --> 00:01:52.622
+Cost: n(n−1)/2 pairs, two DP passes, O(n²).
+
+24
+00:01:52.622 --> 00:01:56.422
+Building the graphs and the DP do the work.
+
+25
+00:01:56.422 --> 00:02:01.022
+Search uses swaps; the number of pairs explodes.
+
+26
+00:02:01.422 --> 00:02:05.689
+The longest path gives the most compact coordinates.
+
+27
+00:02:05.689 --> 00:02:09.600
+Take the maximum: every edge must hold.
+
+28
+00:02:09.600 --> 00:02:13.067
+Edges follow pos, so there is no cycle.
+
+29
+00:02:13.067 --> 00:02:16.467
+No overlap does not mean it fits.
+
+30
+00:02:16.467 --> 00:02:20.467
+One packing can have several encodings.

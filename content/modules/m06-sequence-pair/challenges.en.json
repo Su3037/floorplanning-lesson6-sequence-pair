@@ -1,0 +1,30 @@
+[
+  {
+    "type": "Trace",
+    "title": "Read off a relation"
+  },
+  {
+    "type": "Debug",
+    "title": "Diagnose an invalid pair"
+  },
+  {
+    "type": "Build",
+    "title": "What points into E, and into D"
+  },
+  {
+    "type": "Trace",
+    "title": "Compute one coordinate"
+  },
+  {
+    "type": "Implement",
+    "title": "Write out the whole packing"
+  },
+  {
+    "type": "Constraint",
+    "title": "Build a valid pair that does not fit"
+  },
+  {
+    "type": "Compare",
+    "title": "A different pair, the same packing"
+  }
+]

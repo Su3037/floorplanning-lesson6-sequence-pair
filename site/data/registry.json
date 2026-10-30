@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "2026.10.30-1",
+  "generated": "2026-10-30",
+  "modules": [
+    {
+      "moduleId": "m06-sequence-pair",
+      "displayOrder": 6,
+      "display": "Module 06",
+      "title": "序列对",
+      "topic": "Sequence-Pair",
+      "upstreamId": "module02-05-sequence-pair",
+      "sourceIssue": {
+        "number": 22,
+        "title": "Floorplanning - Lesson 6",
+        "url": "https://github.com/yongfu-li/eda-learning/issues/22"
+      },
+      "teacherMappingStatus": "verified",
+      "challenges": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7"
+      ],
+      "titleEn": "Sequence-Pair"
+    }
+  ]
+}

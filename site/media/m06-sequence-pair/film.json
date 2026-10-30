@@ -1,0 +1,1926 @@
+{
+ "schema": 2,
+ "status": "ready",
+ "films": [
+  {
+   "id": "story",
+   "kind": "popular",
+   "status": "ready",
+   "title": {
+    "zh": "两行字母",
+    "en": "Two Rows of Letters"
+   },
+   "why": {
+    "zh": "五个模块落在一块芯片上，十个坐标化成两行字母。为什么搜坐标很难；两块之间的规则；十对关系、两张约束图；E 取 3、5、7 中的最大值 7，D 被 B 顶到 3；为什么取最大；一个合法却装不下的序列对；不变的量与会变的量；在序列对上搜索；同一布局的不同写法。",
+    "en": "Five blocks land on a die and their ten coordinates turn into two rows of letters. Why searching coordinates is hard; the rule for two blocks; ten pairs and two constraint graphs; E takes the largest of 3, 5, 7, and B pushes D up to 3; why the maximum; a valid pair that does not fit; what never changes and what does; searching over pairs; and different encodings of one packing."
+   },
+   "music": {
+    "zh": "《We Never (Remix)（若如初见）》Hi Noise / 秋成（第三方录音，不在本课程许可范围内）",
+    "en": "“We Never (Remix)” by Hi Noise / 秋成 (third-party recording, not covered by this course's licences)"
+   },
+   "scenes": [
+    {
+     "sceneId": "p-die",
+     "start": 0.0,
+     "end": 10.75
+    },
+    {
+     "sceneId": "p-words",
+     "start": 10.75,
+     "end": 17.41
+    },
+    {
+     "sceneId": "p-why",
+     "start": 17.41,
+     "end": 32.03
+    },
+    {
+     "sceneId": "p-title",
+     "start": 32.03,
+     "end": 37.0
+    },
+    {
+     "sceneId": "p-rule",
+     "start": 37.0,
+     "end": 51.18
+    },
+    {
+     "sceneId": "p-pairs",
+     "start": 51.18,
+     "end": 63.15
+    },
+    {
+     "sceneId": "p-graphs",
+     "start": 63.15,
+     "end": 80.16
+    },
+    {
+     "sceneId": "p-dp",
+     "start": 80.16,
+     "end": 89.1
+    },
+    {
+     "sceneId": "p-pack",
+     "start": 89.1,
+     "end": 97.19
+    },
+    {
+     "sceneId": "p-breath",
+     "start": 97.19,
+     "end": 102.5
+    },
+    {
+     "sceneId": "p-max",
+     "start": 102.5,
+     "end": 119.27
+    },
+    {
+     "sceneId": "p-overflow",
+     "start": 119.27,
+     "end": 134.16
+    },
+    {
+     "sceneId": "p-search",
+     "start": 134.16,
+     "end": 141.5
+    },
+    {
+     "sceneId": "p-twin",
+     "start": 141.5,
+     "end": 170.6
+    },
+    {
+     "sceneId": "p-end",
+     "start": 170.6,
+     "end": 189.82
+    }
+   ],
+   "fps": 30,
+   "size": [
+    1920,
+    1080
+   ],
+   "versions": {
+    "zh": {
+     "src": "story.zh.mp4",
+     "vtt": "story.zh.vtt",
+     "poster": "story.zh.jpg",
+     "duration": 189.83,
+     "captions": "zh+en",
+     "chapters": [
+      {
+       "t": 0.0,
+       "title": "序 · 十个数",
+       "sceneId": "p-die"
+      },
+      {
+       "t": 17.41,
+       "title": "序 · 两行字母",
+       "sceneId": "p-why"
+      },
+      {
+       "t": 37.0,
+       "title": "一 · 规则",
+       "sceneId": "p-rule"
+      },
+      {
+       "t": 63.15,
+       "title": "二 · 两张图",
+       "sceneId": "p-graphs"
+      },
+      {
+       "t": 80.16,
+       "title": "三 · 取最大",
+       "sceneId": "p-dp"
+      },
+      {
+       "t": 102.5,
+       "title": "四 · 为什么",
+       "sceneId": "p-max"
+      },
+      {
+       "t": 119.27,
+       "title": "五 · 装得下吗",
+       "sceneId": "p-overflow"
+      },
+      {
+       "t": 141.5,
+       "title": "尾声",
+       "sceneId": "p-twin"
+      }
+     ],
+     "transcript": [
+      {
+       "start": 0.0,
+       "end": 4.4,
+       "text": "一块芯片上，要摆五个模块。",
+       "sceneId": "p-die"
+      },
+      {
+       "start": 4.4,
+       "end": 9.4,
+       "text": "每块写下左下角：十个数。",
+       "sceneId": "p-die"
+      },
+      {
+       "start": 11.95,
+       "end": 16.55,
+       "text": "其实，两行字母就够了。",
+       "sceneId": "p-words"
+      },
+      {
+       "start": 17.41,
+       "end": 22.21,
+       "text": "随便改一个坐标，块就可能压在一起。",
+       "sceneId": "p-why"
+      },
+      {
+       "start": 22.21,
+       "end": 27.01,
+       "text": "改两行字母，永远不会重叠。",
+       "sceneId": "p-why"
+      },
+      {
+       "start": 27.01,
+       "end": 30.61,
+       "text": "这就是序列对。",
+       "sceneId": "p-why"
+      },
+      {
+       "start": 37.0,
+       "end": 41.6,
+       "text": "任取两块，看它们在两行里的先后。",
+       "sceneId": "p-rule"
+      },
+      {
+       "start": 41.6,
+       "end": 45.8,
+       "text": "次序相同：在前的在左边。",
+       "sceneId": "p-rule"
+      },
+      {
+       "start": 45.8,
+       "end": 50.4,
+       "text": "次序相反：pos 里在前的在下面。",
+       "sceneId": "p-rule"
+      },
+      {
+       "start": 51.18,
+       "end": 55.78,
+       "text": "五块，十对，每对恰好一种关系。",
+       "sceneId": "p-pairs"
+      },
+      {
+       "start": 55.78,
+       "end": 59.98,
+       "text": "六对左右，四对上下。",
+       "sceneId": "p-pairs"
+      },
+      {
+       "start": 63.15,
+       "end": 67.35,
+       "text": "左右连成 H，上下连成 V。",
+       "sceneId": "p-graphs"
+      },
+      {
+       "start": 67.35,
+       "end": 72.35,
+       "text": "每条边：后面的块要让开前面的块。",
+       "sceneId": "p-graphs"
+      },
+      {
+       "start": 72.35,
+       "end": 76.75,
+       "text": "箭头都顺着 pos，不会绕成圈。",
+       "sceneId": "p-graphs"
+      },
+      {
+       "start": 80.16,
+       "end": 85.56,
+       "text": "E 要让开 A、B、C：候选 3、5、7。",
+       "sceneId": "p-dp"
+      },
+      {
+       "start": 85.56,
+       "end": 88.96,
+       "text": "取最大：x = 7。",
+       "sceneId": "p-dp"
+      },
+      {
+       "start": 89.1,
+       "end": 93.7,
+       "text": "D 要让开四块：最高的 B 把它顶到 3。",
+       "sceneId": "p-pack"
+      },
+      {
+       "start": 93.7,
+       "end": 96.7,
+       "text": "9 × 4，装进边界。",
+       "sceneId": "p-pack"
+      },
+      {
+       "start": 102.5,
+       "end": 106.9,
+       "text": "三块：B 要同时让开 A 和 C。",
+       "sceneId": "p-max"
+      },
+      {
+       "start": 106.9,
+       "end": 110.9,
+       "text": "取最小 2，B 压在 A 上。",
+       "sceneId": "p-max"
+      },
+      {
+       "start": 110.9,
+       "end": 114.9,
+       "text": "取最大 3，两条都满足。",
+       "sceneId": "p-max"
+      },
+      {
+       "start": 119.27,
+       "end": 123.181,
+       "text": "两行一模一样：五块排成一行。",
+       "sceneId": "p-overflow"
+      },
+      {
+       "start": 123.181,
+       "end": 126.648,
+       "text": "宽 12，装不下 10 × 8。",
+       "sceneId": "p-overflow"
+      },
+      {
+       "start": 126.648,
+       "end": 130.337,
+       "text": "反过来，高 10，也装不下。",
+       "sceneId": "p-overflow"
+      },
+      {
+       "start": 130.337,
+       "end": 133.337,
+       "text": "合法只保证不重叠。",
+       "sceneId": "p-overflow"
+      },
+      {
+       "start": 134.16,
+       "end": 139.16,
+       "text": "布图工具就在这些写法之间搜索。",
+       "sceneId": "p-search"
+      },
+      {
+       "start": 141.5,
+       "end": 147.5,
+       "text": "换一个字母，布局可能一点不变。",
+       "sceneId": "p-twin"
+      },
+      {
+       "start": 147.5,
+       "end": 154.5,
+       "text": "D 在左上，E 在右下：两种关系都成立。",
+       "sceneId": "p-twin"
+      },
+      {
+       "start": 154.5,
+       "end": 161.5,
+       "text": "14,400 种写法，只有 9,056 种布局。",
+       "sceneId": "p-twin"
+      },
+      {
+       "start": 161.5,
+       "end": 169.5,
+       "text": "哪些改动，真的会移动块？",
+       "sceneId": "p-twin"
+      },
+      {
+       "start": 170.6,
+       "end": 176.6,
+       "text": "下面的实验里，亲手改两行字母。",
+       "sceneId": "p-end"
+      }
+     ],
+     "readingViolations": 0,
+     "bytes": 8124911
+    },
+    "en": {
+     "src": "story.en.mp4",
+     "vtt": "story.en.vtt",
+     "poster": "story.en.jpg",
+     "duration": 189.83,
+     "captions": "en",
+     "chapters": [
+      {
+       "t": 0.0,
+       "title": "PROLOGUE · TEN NUMBERS",
+       "sceneId": "p-die"
+      },
+      {
+       "t": 17.41,
+       "title": "PROLOGUE · TWO ROWS",
+       "sceneId": "p-why"
+      },
+      {
+       "t": 37.0,
+       "title": "I · THE RULE",
+       "sceneId": "p-rule"
+      },
+      {
+       "t": 63.15,
+       "title": "II · TWO GRAPHS",
+       "sceneId": "p-graphs"
+      },
+      {
+       "t": 80.16,
+       "title": "III · THE MAXIMUM",
+       "sceneId": "p-dp"
+      },
+      {
+       "t": 102.5,
+       "title": "IV · WHY",
+       "sceneId": "p-max"
+      },
+      {
+       "t": 119.27,
+       "title": "V · DOES IT FIT",
+       "sceneId": "p-overflow"
+      },
+      {
+       "t": 141.5,
+       "title": "CODA",
+       "sceneId": "p-twin"
+      }
+     ],
+     "transcript": [
+      {
+       "start": 0.0,
+       "end": 4.4,
+       "text": "Five blocks have to go on a chip.",
+       "sceneId": "p-die"
+      },
+      {
+       "start": 4.4,
+       "end": 9.4,
+       "text": "Write each lower-left corner: ten numbers.",
+       "sceneId": "p-die"
+      },
+      {
+       "start": 11.95,
+       "end": 16.55,
+       "text": "Two rows of letters are enough.",
+       "sceneId": "p-words"
+      },
+      {
+       "start": 17.41,
+       "end": 22.21,
+       "text": "Change a coordinate and blocks may pile up.",
+       "sceneId": "p-why"
+      },
+      {
+       "start": 22.21,
+       "end": 27.01,
+       "text": "Change the letters and nothing ever overlaps.",
+       "sceneId": "p-why"
+      },
+      {
+       "start": 27.01,
+       "end": 30.61,
+       "text": "That is the sequence pair.",
+       "sceneId": "p-why"
+      },
+      {
+       "start": 37.0,
+       "end": 41.6,
+       "text": "Take two blocks; look at their order in each row.",
+       "sceneId": "p-rule"
+      },
+      {
+       "start": 41.6,
+       "end": 45.8,
+       "text": "Same order: the first one is on the left.",
+       "sceneId": "p-rule"
+      },
+      {
+       "start": 45.8,
+       "end": 50.4,
+       "text": "Opposite: the one first in pos is below.",
+       "sceneId": "p-rule"
+      },
+      {
+       "start": 51.18,
+       "end": 55.78,
+       "text": "Five blocks, ten pairs, one relation each.",
+       "sceneId": "p-pairs"
+      },
+      {
+       "start": 55.78,
+       "end": 59.98,
+       "text": "Six side by side, four above and below.",
+       "sceneId": "p-pairs"
+      },
+      {
+       "start": 63.15,
+       "end": 67.35,
+       "text": "Left/right forms H; below/above forms V.",
+       "sceneId": "p-graphs"
+      },
+      {
+       "start": 67.35,
+       "end": 72.35,
+       "text": "Each edge: the later block clears the earlier one.",
+       "sceneId": "p-graphs"
+      },
+      {
+       "start": 72.35,
+       "end": 76.75,
+       "text": "Every arrow follows pos, so no cycle.",
+       "sceneId": "p-graphs"
+      },
+      {
+       "start": 80.16,
+       "end": 85.56,
+       "text": "E must clear A, B, C: candidates 3, 5, 7.",
+       "sceneId": "p-dp"
+      },
+      {
+       "start": 85.56,
+       "end": 88.96,
+       "text": "Take the maximum: x = 7.",
+       "sceneId": "p-dp"
+      },
+      {
+       "start": 89.1,
+       "end": 93.7,
+       "text": "D clears four blocks: the tallest, B, lifts it to 3.",
+       "sceneId": "p-pack"
+      },
+      {
+       "start": 93.7,
+       "end": 96.7,
+       "text": "9 × 4, inside the outline.",
+       "sceneId": "p-pack"
+      },
+      {
+       "start": 102.5,
+       "end": 106.9,
+       "text": "Three blocks: B must clear both A and C.",
+       "sceneId": "p-max"
+      },
+      {
+       "start": 106.9,
+       "end": 110.9,
+       "text": "With the minimum, 2, B sits on A.",
+       "sceneId": "p-max"
+      },
+      {
+       "start": 110.9,
+       "end": 114.9,
+       "text": "With the maximum, 3, both hold.",
+       "sceneId": "p-max"
+      },
+      {
+       "start": 119.27,
+       "end": 123.181,
+       "text": "Identical rows: five blocks in one line.",
+       "sceneId": "p-overflow"
+      },
+      {
+       "start": 123.181,
+       "end": 126.648,
+       "text": "12 wide: it does not fit 10 × 8.",
+       "sceneId": "p-overflow"
+      },
+      {
+       "start": 126.648,
+       "end": 130.337,
+       "text": "Reversed: 10 tall, no fit either.",
+       "sceneId": "p-overflow"
+      },
+      {
+       "start": 130.337,
+       "end": 133.337,
+       "text": "Valid only means no overlap.",
+       "sceneId": "p-overflow"
+      },
+      {
+       "start": 134.16,
+       "end": 139.16,
+       "text": "Floorplanners search among these encodings.",
+       "sceneId": "p-search"
+      },
+      {
+       "start": 141.5,
+       "end": 147.5,
+       "text": "Change one letter and the packing may not move.",
+       "sceneId": "p-twin"
+      },
+      {
+       "start": 147.5,
+       "end": 154.5,
+       "text": "D top-left, E bottom-right: both relations hold.",
+       "sceneId": "p-twin"
+      },
+      {
+       "start": 154.5,
+       "end": 161.5,
+       "text": "14,400 encodings, only 9,056 packings.",
+       "sceneId": "p-twin"
+      },
+      {
+       "start": 161.5,
+       "end": 169.5,
+       "text": "Which changes really move a block?",
+       "sceneId": "p-twin"
+      },
+      {
+       "start": 170.6,
+       "end": 176.6,
+       "text": "In the lab below, edit the two rows yourself.",
+       "sceneId": "p-end"
+      }
+     ],
+     "readingViolations": 0,
+     "bytes": 7994171
+    }
+   }
+  },
+  {
+   "id": "concise",
+   "kind": "concise",
+   "status": "ready",
+   "title": {
+    "zh": "精讲：从两个排列到坐标",
+    "en": "Essentials: from two permutations to coordinates"
+   },
+   "why": {
+    "zh": "用教师的五块例子从头走一遍：问题与坐标约定、四种关系、十对块与两张约束图、x 与 y 两遍最长路径、四个分开回答的问题、一个合法却装不下的序列对。",
+    "en": "The instructor's five blocks from start to finish: the problem and the convention, the four relations, ten pairs and two constraint graphs, the two longest-path passes for x and y, four separate questions, and a valid pair that does not fit."
+   },
+   "music": {
+    "zh": "本课程原创程序合成配乐（NumPy），CC BY 4.0",
+    "en": "Original score synthesised for this course (NumPy), CC BY 4.0"
+   },
+   "scenes": [
+    {
+     "sceneId": "k00-title",
+     "start": 0.0,
+     "end": 3.4
+    },
+    {
+     "sceneId": "k01-problem",
+     "start": 3.4,
+     "end": 17.56
+    },
+    {
+     "sceneId": "k02-rule",
+     "start": 17.56,
+     "end": 36.18
+    },
+    {
+     "sceneId": "k03-graphs",
+     "start": 36.18,
+     "end": 50.38
+    },
+    {
+     "sceneId": "k04-dpx",
+     "start": 50.38,
+     "end": 70.8
+    },
+    {
+     "sceneId": "k05-dpy",
+     "start": 70.8,
+     "end": 83.98
+    },
+    {
+     "sceneId": "k06-metrics",
+     "start": 83.98,
+     "end": 97.89
+    },
+    {
+     "sceneId": "k07-overflow",
+     "start": 97.89,
+     "end": 111.84
+    },
+    {
+     "sceneId": "k08-summary",
+     "start": 111.84,
+     "end": 129.87
+    }
+   ],
+   "fps": 30,
+   "size": [
+    1920,
+    1080
+   ],
+   "versions": {
+    "zh": {
+     "src": "concise.zh.mp4",
+     "vtt": "concise.zh.vtt",
+     "poster": "concise.zh.jpg",
+     "duration": 129.87,
+     "captions": "zh+en",
+     "chapters": [
+      {
+       "t": 3.4,
+       "title": "1 · 问题",
+       "sceneId": "k01-problem"
+      },
+      {
+       "t": 17.56,
+       "title": "2 · 规则",
+       "sceneId": "k02-rule"
+      },
+      {
+       "t": 36.18,
+       "title": "3 · 约束图",
+       "sceneId": "k03-graphs"
+      },
+      {
+       "t": 50.38,
+       "title": "4 · 算 x",
+       "sceneId": "k04-dpx"
+      },
+      {
+       "t": 70.8,
+       "title": "5 · 算 y",
+       "sceneId": "k05-dpy"
+      },
+      {
+       "t": 83.98,
+       "title": "6 · 指标",
+       "sceneId": "k06-metrics"
+      },
+      {
+       "t": 97.89,
+       "title": "7 · 合法 ≠ 装得下",
+       "sceneId": "k07-overflow"
+      },
+      {
+       "t": 111.84,
+       "title": "小结",
+       "sceneId": "k08-summary"
+      }
+     ],
+     "transcript": [
+      {
+       "start": 3.4,
+       "end": 7.533,
+       "text": "五个矩形块，固定尺寸，不旋转。",
+       "sceneId": "k01-problem"
+      },
+      {
+       "start": 7.533,
+       "end": 12.556,
+       "text": "固定边界 10 × 8；原点在左下，y 向上。",
+       "sceneId": "k01-problem"
+      },
+      {
+       "start": 12.556,
+       "end": 17.156,
+       "text": "给定 pos 与 neg，求每块的坐标。",
+       "sceneId": "k01-problem"
+      },
+      {
+       "start": 17.556,
+       "end": 22.356,
+       "text": "每一对块，看它们在两个排列里的先后。",
+       "sceneId": "k02-rule"
+      },
+      {
+       "start": 22.356,
+       "end": 25.956,
+       "text": "两边都在前：在左边。",
+       "sceneId": "k02-rule"
+      },
+      {
+       "start": 25.956,
+       "end": 30.311,
+       "text": "pos 在前、neg 在后：在下边。",
+       "sceneId": "k02-rule"
+      },
+      {
+       "start": 30.311,
+       "end": 35.778,
+       "text": "别的教材若规定为“上”，就把两个序列交换。",
+       "sceneId": "k02-rule"
+      },
+      {
+       "start": 36.178,
+       "end": 41.378,
+       "text": "十对块，逐对写出关系。",
+       "sceneId": "k03-graphs"
+      },
+      {
+       "start": 41.378,
+       "end": 45.378,
+       "text": "左右进 H，上下进 V。",
+       "sceneId": "k03-graphs"
+      },
+      {
+       "start": 45.378,
+       "end": 49.978,
+       "text": "每对只进一张图：H 六条，V 四条。",
+       "sceneId": "k03-graphs"
+      },
+      {
+       "start": 50.378,
+       "end": 55.978,
+       "text": "按 pos 的顺序，逐块算 x。",
+       "sceneId": "k04-dpx"
+      },
+      {
+       "start": 55.978,
+       "end": 60.978,
+       "text": "E 的前驱 A、B、C：候选 3、5、7。",
+       "sceneId": "k04-dpx"
+      },
+      {
+       "start": 60.978,
+       "end": 66.0,
+       "text": "加的是前驱的宽；取最大，x[E] = 7。",
+       "sceneId": "k04-dpx"
+      },
+      {
+       "start": 66.0,
+       "end": 70.4,
+       "text": "D 没有水平前驱：x[D] = 0。",
+       "sceneId": "k04-dpx"
+      },
+      {
+       "start": 70.8,
+       "end": 75.4,
+       "text": "再算 y：D 的竖直前驱是另外四块。",
+       "sceneId": "k05-dpy"
+      },
+      {
+       "start": 75.4,
+       "end": 79.978,
+       "text": "最高的是 B：y[D] = 0 + 3 = 3。",
+       "sceneId": "k05-dpy"
+      },
+      {
+       "start": 79.978,
+       "end": 83.578,
+       "text": "其余四块都在 y = 0。",
+       "sceneId": "k05-dpy"
+      },
+      {
+       "start": 83.978,
+       "end": 88.978,
+       "text": "算完后，四个问题分开回答。",
+       "sceneId": "k06-metrics"
+      },
+      {
+       "start": 88.978,
+       "end": 92.889,
+       "text": "包围盒 9 × 4，装进 10 × 8。",
+       "sceneId": "k06-metrics"
+      },
+      {
+       "start": 92.889,
+       "end": 97.489,
+       "text": "边界空余与密度是常量，不随排列变。",
+       "sceneId": "k06-metrics"
+      },
+      {
+       "start": 97.889,
+       "end": 102.689,
+       "text": "两个排列相同：五块排成一行，宽 12。",
+       "sceneId": "k07-overflow"
+      },
+      {
+       "start": 102.689,
+       "end": 107.044,
+       "text": "neg 反过来：叠成一列，高 10。",
+       "sceneId": "k07-overflow"
+      },
+      {
+       "start": 107.044,
+       "end": 111.444,
+       "text": "都合法、不重叠，却都装不下。",
+       "sceneId": "k07-overflow"
+      },
+      {
+       "start": 111.844,
+       "end": 115.978,
+       "text": "次序相同是左右，相反是上下。",
+       "sceneId": "k08-summary"
+      },
+      {
+       "start": 115.978,
+       "end": 119.667,
+       "text": "每对一条边，都顺着 pos。",
+       "sceneId": "k08-summary"
+      },
+      {
+       "start": 119.667,
+       "end": 124.467,
+       "text": "坐标是最长路径：加前驱尺寸，取最大。",
+       "sceneId": "k08-summary"
+      },
+      {
+       "start": 124.467,
+       "end": 129.467,
+       "text": "不重叠有保证，装得下要另查。",
+       "sceneId": "k08-summary"
+      }
+     ],
+     "readingViolations": 0,
+     "bytes": 5724012
+    },
+    "en": {
+     "src": "concise.en.mp4",
+     "vtt": "concise.en.vtt",
+     "poster": "concise.en.jpg",
+     "duration": 129.87,
+     "captions": "en",
+     "chapters": [
+      {
+       "t": 3.4,
+       "title": "1 · THE PROBLEM",
+       "sceneId": "k01-problem"
+      },
+      {
+       "t": 17.56,
+       "title": "2 · THE RULE",
+       "sceneId": "k02-rule"
+      },
+      {
+       "t": 36.18,
+       "title": "3 · CONSTRAINT GRAPHS",
+       "sceneId": "k03-graphs"
+      },
+      {
+       "t": 50.38,
+       "title": "4 · COMPUTING x",
+       "sceneId": "k04-dpx"
+      },
+      {
+       "t": 70.8,
+       "title": "5 · COMPUTING y",
+       "sceneId": "k05-dpy"
+      },
+      {
+       "t": 83.98,
+       "title": "6 · METRICS",
+       "sceneId": "k06-metrics"
+      },
+      {
+       "t": 97.89,
+       "title": "7 · VALID ≠ FITS",
+       "sceneId": "k07-overflow"
+      },
+      {
+       "t": 111.84,
+       "title": "SUMMARY",
+       "sceneId": "k08-summary"
+      }
+     ],
+     "transcript": [
+      {
+       "start": 3.4,
+       "end": 7.533,
+       "text": "Five rectangles, fixed sizes, no rotation.",
+       "sceneId": "k01-problem"
+      },
+      {
+       "start": 7.533,
+       "end": 12.556,
+       "text": "Fixed outline 10 × 8; origin lower-left, y up.",
+       "sceneId": "k01-problem"
+      },
+      {
+       "start": 12.556,
+       "end": 17.156,
+       "text": "Given pos and neg, find every block's coordinates.",
+       "sceneId": "k01-problem"
+      },
+      {
+       "start": 17.556,
+       "end": 22.356,
+       "text": "For each pair, compare its order in the two permutations.",
+       "sceneId": "k02-rule"
+      },
+      {
+       "start": 22.356,
+       "end": 25.956,
+       "text": "First in both: on the left.",
+       "sceneId": "k02-rule"
+      },
+      {
+       "start": 25.956,
+       "end": 30.311,
+       "text": "First in pos, second in neg: below.",
+       "sceneId": "k02-rule"
+      },
+      {
+       "start": 30.311,
+       "end": 35.778,
+       "text": "If a book says 'above', swap the two sequences.",
+       "sceneId": "k02-rule"
+      },
+      {
+       "start": 36.178,
+       "end": 41.378,
+       "text": "Ten pairs, each relation written down.",
+       "sceneId": "k03-graphs"
+      },
+      {
+       "start": 41.378,
+       "end": 45.378,
+       "text": "Left/right goes into H, below/above into V.",
+       "sceneId": "k03-graphs"
+      },
+      {
+       "start": 45.378,
+       "end": 49.978,
+       "text": "Each pair goes into one graph: six in H, four in V.",
+       "sceneId": "k03-graphs"
+      },
+      {
+       "start": 50.378,
+       "end": 55.978,
+       "text": "In pos order, compute x block by block.",
+       "sceneId": "k04-dpx"
+      },
+      {
+       "start": 55.978,
+       "end": 60.978,
+       "text": "E's predecessors A, B, C: candidates 3, 5, 7.",
+       "sceneId": "k04-dpx"
+      },
+      {
+       "start": 60.978,
+       "end": 66.0,
+       "text": "Add the predecessor's width; the maximum, x[E] = 7.",
+       "sceneId": "k04-dpx"
+      },
+      {
+       "start": 66.0,
+       "end": 70.4,
+       "text": "D has no horizontal predecessor: x[D] = 0.",
+       "sceneId": "k04-dpx"
+      },
+      {
+       "start": 70.8,
+       "end": 75.4,
+       "text": "Now y: D's vertical predecessors are the other four.",
+       "sceneId": "k05-dpy"
+      },
+      {
+       "start": 75.4,
+       "end": 79.978,
+       "text": "The tallest is B: y[D] = 0 + 3 = 3.",
+       "sceneId": "k05-dpy"
+      },
+      {
+       "start": 79.978,
+       "end": 83.578,
+       "text": "The other four stay at y = 0.",
+       "sceneId": "k05-dpy"
+      },
+      {
+       "start": 83.978,
+       "end": 88.978,
+       "text": "Then answer four separate questions.",
+       "sceneId": "k06-metrics"
+      },
+      {
+       "start": 88.978,
+       "end": 92.889,
+       "text": "Box 9 × 4, inside 10 × 8.",
+       "sceneId": "k06-metrics"
+      },
+      {
+       "start": 92.889,
+       "end": 97.489,
+       "text": "Outline unused and density are constants.",
+       "sceneId": "k06-metrics"
+      },
+      {
+       "start": 97.889,
+       "end": 102.689,
+       "text": "Identical permutations: one row, 12 wide.",
+       "sceneId": "k07-overflow"
+      },
+      {
+       "start": 102.689,
+       "end": 107.044,
+       "text": "Reverse neg: one column, 10 tall.",
+       "sceneId": "k07-overflow"
+      },
+      {
+       "start": 107.044,
+       "end": 111.444,
+       "text": "Both valid and overlap-free, neither fits.",
+       "sceneId": "k07-overflow"
+      },
+      {
+       "start": 111.844,
+       "end": 115.978,
+       "text": "Same order is left/right; opposite is below/above.",
+       "sceneId": "k08-summary"
+      },
+      {
+       "start": 115.978,
+       "end": 119.667,
+       "text": "One edge per pair, all along pos.",
+       "sceneId": "k08-summary"
+      },
+      {
+       "start": 119.667,
+       "end": 124.467,
+       "text": "A coordinate is a longest path: add the size, take the max.",
+       "sceneId": "k08-summary"
+      },
+      {
+       "start": 124.467,
+       "end": 129.467,
+       "text": "No overlap is guaranteed; fit is checked separately.",
+       "sceneId": "k08-summary"
+      }
+     ],
+     "readingViolations": 0,
+     "bytes": 5619437
+    }
+   }
+  },
+  {
+   "id": "advanced",
+   "kind": "advanced",
+   "status": "ready",
+   "title": {
+    "zh": "进阶：七个为什么",
+    "en": "The whys: seven questions"
+   },
+   "why": {
+    "zh": "为什么最长路径就是最紧凑的坐标、为什么取最大、为什么约束图没有环、为什么不重叠却装不下（14,400 中 720）、为什么多个序列对给出同一布局（9,056 种）、另一种约定怎样换算，以及代价与搜索。",
+    "en": "Why the longest path is the most compact coordinate, why the maximum, why the graphs have no cycle, why overlap-free pairs can overflow (720 of 14,400), why several pairs share one packing (9,056 packings), how to convert the other convention, and cost and search."
+   },
+   "music": {
+    "zh": "本课程原创程序合成配乐（NumPy），CC BY 4.0",
+    "en": "Original score synthesised for this course (NumPy), CC BY 4.0"
+   },
+   "scenes": [
+    {
+     "sceneId": "a00-title",
+     "start": 0.0,
+     "end": 3.4
+    },
+    {
+     "sceneId": "a01-longest",
+     "start": 3.4,
+     "end": 22.2
+    },
+    {
+     "sceneId": "a02-max",
+     "start": 22.2,
+     "end": 37.0
+    },
+    {
+     "sceneId": "a03-acyclic",
+     "start": 37.0,
+     "end": 54.4
+    },
+    {
+     "sceneId": "a04-fit",
+     "start": 54.4,
+     "end": 71.67
+    },
+    {
+     "sceneId": "a05-twins",
+     "start": 71.67,
+     "end": 92.38
+    },
+    {
+     "sceneId": "a06-mirror",
+     "start": 92.38,
+     "end": 106.49
+    },
+    {
+     "sceneId": "a07-cost",
+     "start": 106.49,
+     "end": 121.42
+    },
+    {
+     "sceneId": "a08-summary",
+     "start": 121.42,
+     "end": 140.87
+    }
+   ],
+   "fps": 30,
+   "size": [
+    1920,
+    1080
+   ],
+   "versions": {
+    "zh": {
+     "src": "advanced.zh.mp4",
+     "vtt": "advanced.zh.vtt",
+     "poster": "advanced.zh.jpg",
+     "duration": 140.87,
+     "captions": "zh+en",
+     "chapters": [
+      {
+       "t": 3.4,
+       "title": "一 · 最长路径",
+       "sceneId": "a01-longest"
+      },
+      {
+       "t": 22.2,
+       "title": "二 · 为什么取最大",
+       "sceneId": "a02-max"
+      },
+      {
+       "t": 37.0,
+       "title": "三 · 为什么无环",
+       "sceneId": "a03-acyclic"
+      },
+      {
+       "t": 54.4,
+       "title": "四 · 不重叠 ≠ 装得下",
+       "sceneId": "a04-fit"
+      },
+      {
+       "t": 71.67,
+       "title": "五 · 一种布局，多种写法",
+       "sceneId": "a05-twins"
+      },
+      {
+       "t": 92.38,
+       "title": "六 · 另一种约定",
+       "sceneId": "a06-mirror"
+      },
+      {
+       "t": 106.49,
+       "title": "七 · 代价与搜索",
+       "sceneId": "a07-cost"
+      },
+      {
+       "t": 121.42,
+       "title": "小结",
+       "sceneId": "a08-summary"
+      }
+     ],
+     "transcript": [
+      {
+       "start": 3.4,
+       "end": 8.0,
+       "text": "E 的每条入边都是一个下界。",
+       "sceneId": "a01-longest"
+      },
+      {
+       "start": 8.0,
+       "end": 12.4,
+       "text": "把下界画在数轴上：3、5、7。",
+       "sceneId": "a01-longest"
+      },
+      {
+       "start": 12.4,
+       "end": 17.2,
+       "text": "同时满足三条，x[E] 只能在 7 以右。",
+       "sceneId": "a01-longest"
+      },
+      {
+       "start": 17.2,
+       "end": 21.8,
+       "text": "最小的可行值就是最长路径。",
+       "sceneId": "a01-longest"
+      },
+      {
+       "start": 22.2,
+       "end": 27.0,
+       "text": "三块：A 在 C 下边，A、C 都在 B 左边。",
+       "sceneId": "a02-max"
+      },
+      {
+       "start": 27.0,
+       "end": 32.6,
+       "text": "取最小 2：只满足 C 那一条，B 压在 A 上。",
+       "sceneId": "a02-max"
+      },
+      {
+       "start": 32.6,
+       "end": 36.6,
+       "text": "取最大 3：两条都满足。",
+       "sceneId": "a02-max"
+      },
+      {
+       "start": 37.0,
+       "end": 40.6,
+       "text": "约束图会不会有环？",
+       "sceneId": "a03-acyclic"
+      },
+      {
+       "start": 40.6,
+       "end": 44.8,
+       "text": "给每块标上它在 pos 里的位置。",
+       "sceneId": "a03-acyclic"
+      },
+      {
+       "start": 44.8,
+       "end": 49.4,
+       "text": "左边和下边，都要求在 pos 里在前。",
+       "sceneId": "a03-acyclic"
+      },
+      {
+       "start": 49.4,
+       "end": 54.0,
+       "text": "沿边走，位置只增不减：没有环。",
+       "sceneId": "a03-acyclic"
+      },
+      {
+       "start": 54.4,
+       "end": 59.2,
+       "text": "把全部 14,400 个序列对都算一遍。",
+       "sceneId": "a04-fit"
+      },
+      {
+       "start": 59.2,
+       "end": 62.2,
+       "text": "没有一个重叠。",
+       "sceneId": "a04-fit"
+      },
+      {
+       "start": 62.2,
+       "end": 66.0,
+       "text": "但 720 个装不进 10 × 8。",
+       "sceneId": "a04-fit"
+      },
+      {
+       "start": 66.0,
+       "end": 71.267,
+       "text": "边界空余与密度从不变化，不能用来比较。",
+       "sceneId": "a04-fit"
+      },
+      {
+       "start": 71.667,
+       "end": 76.689,
+       "text": "pos 中交换 E、D：E–D 的关系变了。",
+       "sceneId": "a05-twins"
+      },
+      {
+       "start": 76.689,
+       "end": 81.489,
+       "text": "坐标却完全相同：两种关系都成立。",
+       "sceneId": "a05-twins"
+      },
+      {
+       "start": 81.489,
+       "end": 86.289,
+       "text": "反过来，包围盒相同，布局可以不同。",
+       "sceneId": "a05-twins"
+      },
+      {
+       "start": 86.289,
+       "end": 91.978,
+       "text": "14,400 个序列对，只有 9,056 种布局。",
+       "sceneId": "a05-twins"
+      },
+      {
+       "start": 92.378,
+       "end": 96.578,
+       "text": "有的教材把“下”定义成“上”。",
+       "sceneId": "a06-mirror"
+      },
+      {
+       "start": 96.578,
+       "end": 102.489,
+       "text": "那只是竖直方向的镜像：交换 pos 与 neg 即可。",
+       "sceneId": "a06-mirror"
+      },
+      {
+       "start": 102.489,
+       "end": 106.089,
+       "text": "读资料时先看约定。",
+       "sceneId": "a06-mirror"
+      },
+      {
+       "start": 106.489,
+       "end": 112.622,
+       "text": "代价：n(n−1)/2 对，两遍 DP，O(n²)。",
+       "sceneId": "a07-cost"
+      },
+      {
+       "start": 112.622,
+       "end": 116.422,
+       "text": "建图与 DP 是主要的工作。",
+       "sceneId": "a07-cost"
+      },
+      {
+       "start": 116.422,
+       "end": 121.022,
+       "text": "搜索靠交换；排列对的数量增长极快。",
+       "sceneId": "a07-cost"
+      },
+      {
+       "start": 121.422,
+       "end": 125.689,
+       "text": "最长路径给出最紧凑的坐标。",
+       "sceneId": "a08-summary"
+      },
+      {
+       "start": 125.689,
+       "end": 129.6,
+       "text": "取最大，因为每条边都要成立。",
+       "sceneId": "a08-summary"
+      },
+      {
+       "start": 129.6,
+       "end": 133.067,
+       "text": "边顺着 pos，所以无环。",
+       "sceneId": "a08-summary"
+      },
+      {
+       "start": 133.067,
+       "end": 136.467,
+       "text": "不重叠不等于装得下。",
+       "sceneId": "a08-summary"
+      },
+      {
+       "start": 136.467,
+       "end": 140.467,
+       "text": "一种布局，可以有多种写法。",
+       "sceneId": "a08-summary"
+      }
+     ],
+     "readingViolations": 0,
+     "bytes": 6082070
+    },
+    "en": {
+     "src": "advanced.en.mp4",
+     "vtt": "advanced.en.vtt",
+     "poster": "advanced.en.jpg",
+     "duration": 140.87,
+     "captions": "en",
+     "chapters": [
+      {
+       "t": 3.4,
+       "title": "I · LONGEST PATH",
+       "sceneId": "a01-longest"
+      },
+      {
+       "t": 22.2,
+       "title": "II · WHY THE MAXIMUM",
+       "sceneId": "a02-max"
+      },
+      {
+       "t": 37.0,
+       "title": "III · WHY NO CYCLE",
+       "sceneId": "a03-acyclic"
+      },
+      {
+       "t": 54.4,
+       "title": "IV · NO OVERLAP ≠ FITS",
+       "sceneId": "a04-fit"
+      },
+      {
+       "t": 71.67,
+       "title": "V · ONE PACKING, MANY ENCODINGS",
+       "sceneId": "a05-twins"
+      },
+      {
+       "t": 92.38,
+       "title": "VI · THE OTHER CONVENTION",
+       "sceneId": "a06-mirror"
+      },
+      {
+       "t": 106.49,
+       "title": "VII · COST AND SEARCH",
+       "sceneId": "a07-cost"
+      },
+      {
+       "t": 121.42,
+       "title": "SUMMARY",
+       "sceneId": "a08-summary"
+      }
+     ],
+     "transcript": [
+      {
+       "start": 3.4,
+       "end": 8.0,
+       "text": "Every edge into E is a lower bound.",
+       "sceneId": "a01-longest"
+      },
+      {
+       "start": 8.0,
+       "end": 12.4,
+       "text": "Put the bounds on a line: 3, 5, 7.",
+       "sceneId": "a01-longest"
+      },
+      {
+       "start": 12.4,
+       "end": 17.2,
+       "text": "To meet all three, x[E] must be 7 or more.",
+       "sceneId": "a01-longest"
+      },
+      {
+       "start": 17.2,
+       "end": 21.8,
+       "text": "The smallest feasible value is the longest path.",
+       "sceneId": "a01-longest"
+      },
+      {
+       "start": 22.2,
+       "end": 27.0,
+       "text": "Three blocks: A below C; A and C left of B.",
+       "sceneId": "a02-max"
+      },
+      {
+       "start": 27.0,
+       "end": 32.6,
+       "text": "The minimum, 2, meets only C's bound; B lands on A.",
+       "sceneId": "a02-max"
+      },
+      {
+       "start": 32.6,
+       "end": 36.6,
+       "text": "The maximum, 3, meets both.",
+       "sceneId": "a02-max"
+      },
+      {
+       "start": 37.0,
+       "end": 40.6,
+       "text": "Could a constraint graph have a cycle?",
+       "sceneId": "a03-acyclic"
+      },
+      {
+       "start": 40.6,
+       "end": 44.8,
+       "text": "Label every block with its place in pos.",
+       "sceneId": "a03-acyclic"
+      },
+      {
+       "start": 44.8,
+       "end": 49.4,
+       "text": "Both 'left of' and 'below' need first in pos.",
+       "sceneId": "a03-acyclic"
+      },
+      {
+       "start": 49.4,
+       "end": 54.0,
+       "text": "Along any edge the place grows: no cycle.",
+       "sceneId": "a03-acyclic"
+      },
+      {
+       "start": 54.4,
+       "end": 59.2,
+       "text": "Compute all 14,400 pairs.",
+       "sceneId": "a04-fit"
+      },
+      {
+       "start": 59.2,
+       "end": 62.2,
+       "text": "Not one overlaps.",
+       "sceneId": "a04-fit"
+      },
+      {
+       "start": 62.2,
+       "end": 66.0,
+       "text": "But 720 do not fit 10 × 8.",
+       "sceneId": "a04-fit"
+      },
+      {
+       "start": 66.0,
+       "end": 71.267,
+       "text": "Outline unused and density never change; they cannot compare pairs.",
+       "sceneId": "a04-fit"
+      },
+      {
+       "start": 71.667,
+       "end": 76.689,
+       "text": "Swap E and D in pos: the E–D relation changes.",
+       "sceneId": "a05-twins"
+      },
+      {
+       "start": 76.689,
+       "end": 81.489,
+       "text": "Yet the coordinates are identical: both relations hold.",
+       "sceneId": "a05-twins"
+      },
+      {
+       "start": 81.489,
+       "end": 86.289,
+       "text": "Conversely, the same box can hide a different packing.",
+       "sceneId": "a05-twins"
+      },
+      {
+       "start": 86.289,
+       "end": 91.978,
+       "text": "14,400 pairs, only 9,056 packings.",
+       "sceneId": "a05-twins"
+      },
+      {
+       "start": 92.378,
+       "end": 96.578,
+       "text": "Some textbooks define 'below' as 'above'.",
+       "sceneId": "a06-mirror"
+      },
+      {
+       "start": 96.578,
+       "end": 102.489,
+       "text": "It is a vertical mirror: swap pos and neg.",
+       "sceneId": "a06-mirror"
+      },
+      {
+       "start": 102.489,
+       "end": 106.089,
+       "text": "Check the convention before you read on.",
+       "sceneId": "a06-mirror"
+      },
+      {
+       "start": 106.489,
+       "end": 112.622,
+       "text": "Cost: n(n−1)/2 pairs, two DP passes, O(n²).",
+       "sceneId": "a07-cost"
+      },
+      {
+       "start": 112.622,
+       "end": 116.422,
+       "text": "Building the graphs and the DP do the work.",
+       "sceneId": "a07-cost"
+      },
+      {
+       "start": 116.422,
+       "end": 121.022,
+       "text": "Search uses swaps; the number of pairs explodes.",
+       "sceneId": "a07-cost"
+      },
+      {
+       "start": 121.422,
+       "end": 125.689,
+       "text": "The longest path gives the most compact coordinates.",
+       "sceneId": "a08-summary"
+      },
+      {
+       "start": 125.689,
+       "end": 129.6,
+       "text": "Take the maximum: every edge must hold.",
+       "sceneId": "a08-summary"
+      },
+      {
+       "start": 129.6,
+       "end": 133.067,
+       "text": "Edges follow pos, so there is no cycle.",
+       "sceneId": "a08-summary"
+      },
+      {
+       "start": 133.067,
+       "end": 136.467,
+       "text": "No overlap does not mean it fits.",
+       "sceneId": "a08-summary"
+      },
+      {
+       "start": 136.467,
+       "end": 140.467,
+       "text": "One packing can have several encodings.",
+       "sceneId": "a08-summary"
+      }
+     ],
+     "readingViolations": 0,
+     "bytes": 5937510
+    }
+   }
+  },
+  {
+   "id": "lab",
+   "kind": "lab",
+   "status": "ready",
+   "title": {
+    "zh": "实验演示",
+    "en": "Lab Walkthrough"
+   },
+   "why": {
+    "zh": "从真实页面录下的操作演示：单步看 A、B 同序得到 H 边、A、D 交叉得到 V 边，点块 E 看 x[E] = 7 由 C 决定；换到 ABCDE / EDCBA 叠成 3 × 10 装不下；在 pos 里移动 D 得到同一布局的另一种编码；再在浏览器里写 relation() 和 longest_path() 并通过全部检查，8 个例子与课程引擎逐块一致。",
+    "en": "Recorded from the real page: stepping to the H edge A→B (same order) and the V edge A→D (crossed order), clicking block E to see x[E] = 7 set by C; ABCDE / EDCBA stacking to 3 × 10 and overflowing; moving D in pos to get another encoding of the same packing; then writing relation() and longest_path() in the browser, passing every check, and matching the course engine block by block on 8 cases."
+   },
+   "music": {
+    "zh": "本课程原创程序合成配乐（NumPy），CC BY 4.0",
+    "en": "Original score synthesised for this course (NumPy), CC BY 4.0"
+   },
+   "recorded": "scripts/film/recorder.mjs + video/m06-sequence-pair/walkthrough.mjs",
+   "fps": 30,
+   "size": [
+    1920,
+    1080
+   ],
+   "versions": {
+    "zh": {
+     "src": "lab.zh.mp4",
+     "vtt": "lab.zh.vtt",
+     "poster": "lab.zh.jpg",
+     "duration": 170.73,
+     "captions": "zh+en",
+     "chapters": [
+      {
+       "t": 0.0,
+       "title": "开始",
+       "sceneId": "title"
+      },
+      {
+       "t": 3.2,
+       "title": "实验台",
+       "sceneId": "shot-00"
+      },
+      {
+       "t": 51.64,
+       "title": "改排列",
+       "sceneId": "shot-05"
+      },
+      {
+       "t": 83.69,
+       "title": "在线编程",
+       "sceneId": "shot-08"
+      },
+      {
+       "t": 140.76,
+       "title": "用你的代码跑",
+       "sceneId": "shot-13"
+      },
+      {
+       "t": 160.5,
+       "title": "挑战",
+       "sceneId": "shot-15"
+      }
+     ],
+     "transcript": [
+      {
+       "start": 3.2,
+       "end": 13.511,
+       "text": "这是本课的实验台：上面两行是 pos 和 neg，默认是教师示例 ABCED / DABCE。",
+       "sceneId": "shot-00"
+      },
+      {
+       "start": 13.511,
+       "end": 22.489,
+       "text": "结果分开判断：完整、不重叠、装得下各是一项。这一对得到 9 × 4，装得下。",
+       "sceneId": "shot-01"
+      },
+      {
+       "start": 22.489,
+       "end": 32.578,
+       "text": "回到第一步再单步：A、B 在两个序列里都是 A 在前，所以 A 在 B 左边，得到 H 边 A→B。",
+       "sceneId": "shot-02"
+      },
+      {
+       "start": 32.578,
+       "end": 42.667,
+       "text": "再走三步到 A、D：pos 里 A 在前，neg 里 D 在前，连线交叉，A 在 D 下边，是 V 边。",
+       "sceneId": "shot-03"
+      },
+      {
+       "start": 42.667,
+       "end": 51.644,
+       "text": "跳到结束，点块 E：x[E] = 7，由 C 决定。三个水平前驱里取最大的那个。",
+       "sceneId": "shot-04"
+      },
+      {
+       "start": 51.644,
+       "end": 63.511,
+       "text": "换预设“合法但纵向溢出”：ABCDE / EDCBA，每对都是上下，叠成 3 × 10。不重叠，但装不下。",
+       "sceneId": "shot-05"
+      },
+      {
+       "start": 63.511,
+       "end": 75.156,
+       "text": "回到教师示例，在 pos 里选中 D，往左移一格：ABCDE / DABCE。关系变了，布局却一点没变。",
+       "sceneId": "shot-06"
+      },
+      {
+       "start": 75.156,
+       "end": 83.689,
+       "text": "“随机邻居”就是模拟退火的基本动作：随机交换两块。不满意可以撤销。",
+       "sceneId": "shot-07"
+      },
+      {
+       "start": 83.689,
+       "end": 96.444,
+       "text": "在线编程：代码在浏览器里运行，不用安装 Python。pack() 和 trace() 已经写好，留了五个任务。",
+       "sceneId": "shot-08"
+      },
+      {
+       "start": 96.444,
+       "end": 103.644,
+       "text": "先运行检查：任务都还没写，结果是 INCOMPLETE。",
+       "sceneId": "shot-09"
+      },
+      {
+       "start": 103.644,
+       "end": 112.683,
+       "text": "任务二：a 相对 b 的位置。两个序列里先后相同就是左右，相反就是上下。",
+       "sceneId": "shot-10"
+      },
+      {
+       "start": 112.683,
+       "end": 129.562,
+       "text": "任务四：最长路径。按拓扑序，坐标取“前驱坐标 + 前驱尺寸”的最大值，并记下是谁定的。",
+       "sceneId": "shot-11"
+      },
+      {
+       "start": 129.562,
+       "end": 140.762,
+       "text": "任务一、三、五（校验、建图、指标）在这段演示里直接从参考答案填入，然后运行检查：全部通过。",
+       "sceneId": "shot-12"
+      },
+      {
+       "start": 140.762,
+       "end": 151.074,
+       "text": "下面用你写的函数跑 8 个例子，逐块对照课程引擎：坐标、取最大的前驱、装得下与包围盒。",
+       "sceneId": "shot-13"
+      },
+      {
+       "start": 151.074,
+       "end": 160.496,
+       "text": "点“三块：取最大”那一行：B 从 x = 3 开始，左边是你的代码，右边是课程引擎。",
+       "sceneId": "shot-14"
+      },
+      {
+       "start": 160.496,
+       "end": 168.14,
+       "text": "最后做挑战题，确认自己真的懂了。结果只保存在你的浏览器里。",
+       "sceneId": "shot-15"
+      }
+     ],
+     "readingViolations": 0,
+     "bytes": 11554235
+    },
+    "en": {
+     "src": "lab.en.mp4",
+     "vtt": "lab.en.vtt",
+     "poster": "lab.en.jpg",
+     "duration": 156.5,
+     "captions": "en",
+     "chapters": [
+      {
+       "t": 0.0,
+       "title": "START",
+       "sceneId": "title"
+      },
+      {
+       "t": 3.2,
+       "title": "THE LAB",
+       "sceneId": "shot-00"
+      },
+      {
+       "t": 46.13,
+       "title": "CHANGE THE PAIR",
+       "sceneId": "shot-05"
+      },
+      {
+       "t": 75.2,
+       "title": "CODE LAB",
+       "sceneId": "shot-08"
+      },
+      {
+       "t": 127.63,
+       "title": "YOUR CODE, VISUALISED",
+       "sceneId": "shot-13"
+      },
+      {
+       "t": 146.76,
+       "title": "CHALLENGES",
+       "sceneId": "shot-15"
+      }
+     ],
+     "transcript": [
+      {
+       "start": 3.2,
+       "end": 11.667,
+       "text": "This is the lesson's lab: the two rows are pos and neg, starting from the instructor's example ABCED / DABCE.",
+       "sceneId": "shot-00"
+      },
+      {
+       "start": 11.667,
+       "end": 20.467,
+       "text": "The result is judged item by item: complete, no overlap and fits are separate. This pair gives 9 × 4, and it fits.",
+       "sceneId": "shot-01"
+      },
+      {
+       "start": 20.467,
+       "end": 28.667,
+       "text": "Back to the start and step: A comes before B in both sequences, so A is left of B, giving the H edge A→B.",
+       "sceneId": "shot-02"
+      },
+      {
+       "start": 28.667,
+       "end": 37.2,
+       "text": "Three more steps to A and D: A is first in pos but D is first in neg; the lines cross, A is below D, a V edge.",
+       "sceneId": "shot-03"
+      },
+      {
+       "start": 37.2,
+       "end": 46.133,
+       "text": "Jump to the end and click block E: x[E] = 7, set by C. Of its three horizontal predecessors, the largest bound wins.",
+       "sceneId": "shot-04"
+      },
+      {
+       "start": 46.133,
+       "end": 57.0,
+       "text": "Switch to the preset “valid but overflows vertically”: ABCDE / EDCBA, every pair is above/below, a 3 × 10 stack. No overlap, but it does not fit.",
+       "sceneId": "shot-05"
+      },
+      {
+       "start": 57.0,
+       "end": 67.2,
+       "text": "Back to the instructor's example: select D in pos and move it one place left, ABCDE / DABCE. The relation changed, the packing did not.",
+       "sceneId": "shot-06"
+      },
+      {
+       "start": 67.2,
+       "end": 75.2,
+       "text": "“Random neighbour” is the basic annealing move: swap two blocks at random. Undo if you do not like it.",
+       "sceneId": "shot-07"
+      },
+      {
+       "start": 75.2,
+       "end": 84.667,
+       "text": "The code lab: your code runs in the browser, with no Python to install. pack() and trace() are written; five tasks are left.",
+       "sceneId": "shot-08"
+      },
+      {
+       "start": 84.667,
+       "end": 90.8,
+       "text": "Run the checks first: nothing is written yet, so the result is INCOMPLETE.",
+       "sceneId": "shot-09"
+      },
+      {
+       "start": 90.8,
+       "end": 100.0,
+       "text": "Task 2: where a sits relative to b. The same order in both sequences means left/right; opposite orders mean below/above.",
+       "sceneId": "shot-10"
+      },
+      {
+       "start": 100.0,
+       "end": 116.894,
+       "text": "Task 4: the longest path. In topological order, take the largest “predecessor coordinate + predecessor size”, and record who set it.",
+       "sceneId": "shot-11"
+      },
+      {
+       "start": 116.894,
+       "end": 127.627,
+       "text": "For this demo, tasks 1, 3 and 5 (validate, build the graphs, metrics) are filled in from the reference; then run the checks: everything passes.",
+       "sceneId": "shot-12"
+      },
+      {
+       "start": 127.627,
+       "end": 138.694,
+       "text": "Below, your functions run on eight cases, compared block by block with the course engine: coordinates, the chosen predecessor, fit and bounding box.",
+       "sceneId": "shot-13"
+      },
+      {
+       "start": 138.694,
+       "end": 146.761,
+       "text": "Click the “three blocks” row: B starts at x = 3; your code on the left, the course engine on the right.",
+       "sceneId": "shot-14"
+      },
+      {
+       "start": 146.761,
+       "end": 153.894,
+       "text": "Finally, try the challenges to check you really understand. Results stay in your browser.",
+       "sceneId": "shot-15"
+      }
+     ],
+     "readingViolations": 0,
+     "bytes": 10586079
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>序列对 · Floorplanning · Lesson 6</title>
+<meta name="description" content="布图规划第 6 课：用两个排列 pos 与 neg 表示矩形布局，由约束图与最长路径算出坐标。中文讲解、四部影片、带页码课件、可编辑排列的浏览器实验、挑战与 Python 练习。">
+<link rel="alternate" hreflang="zh-CN" href="index.html">
+<link rel="alternate" hreflang="en" href="en/index.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2032%2032%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2226%22%20height%3D%2226%22%20rx%3D%222%22%20fill%3D%22none%22%20stroke%3D%22%23946a17%22%20stroke-width%3D%221.3%22%20stroke-dasharray%3D%222.4%202%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%2217%22%20width%3D%229%22%20height%3D%2210%22%20fill%3D%22%230f6b5c%22%2F%3E%3Crect%20x%3D%2215%22%20y%3D%2220%22%20width%3D%227%22%20height%3D%227%22%20fill%3D%22%232f5e9e%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%2211%22%20width%3D%2211%22%20height%3D%225%22%20fill%3D%22%23946a17%22%2F%3E%3Crect%20x%3D%2223%22%20y%3D%2221%22%20width%3D%225%22%20height%3D%226%22%20fill%3D%22%236b4c9a%22%2F%3E%3C%2Fsvg%3E">
+<link rel="preload" href="assets/fonts/noto-serif-sc-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/course.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar"><div class="wrap">
+<a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="3" width="26" height="26" rx="2" fill="none" stroke="#946a17" stroke-width="1.3" stroke-dasharray="2.4 2"/><rect x="5" y="17" width="9" height="10" fill="#0f6b5c"/><rect x="15" y="20" width="7" height="7" fill="#2f5e9e"/><rect x="5" y="11" width="11" height="5" fill="#946a17"/><rect x="23" y="21" width="5" height="6" fill="#6b4c9a"/></svg><span class="brand-name">Floorplanning · Lesson 6</span><span class="brand-sub">序列对工作室</span></a>
+<nav class="topnav" aria-label="课程"><a href="index.html" aria-current="page">概览</a><a href="modules/m06-sequence-pair/index.html">Module 06</a><a href="foundations/index.html">基础速查</a><a href="glossary/index.html">术语表</a><a href="guide/index.html">如何挑战</a><a href="credits/index.html">资源与贡献</a><a href="progress/index.html">学习记录</a></nav>
+<div class="lang-switch" role="group" aria-label="语言"><span aria-current="true">中文</span><a href="en/index.html" hreflang="en" lang="en" data-lang-link="en">EN</a></div>
+</div></header>
+<main id="main">
+<section class="wrap hero"><div class="hero-text">
+<p class="eyebrow">Floorplanning · Lesson 6 / Module 06 / 序列对</p>
+<h1>两行字母<br>摆好一块芯片</h1>
+<p class="hero-sub">两行字母，怎么就决定了五个模块谁在左、谁在上？</p>
+<p class="lead">布图规划要把处理器核、缓存、接口这些矩形模块摆进芯片的固定边界里，不重叠、尽量紧凑。序列对用<b>两个排列</b>记录每一对模块的上下左右，再用约束图上的最长路径算出坐标。这一课从五个小模块出发，一步步看清这个过程：哪些是它保证的，哪些不是。</p>
+<div class="btn-row"><a class="btn primary" href="modules/m06-sequence-pair/index.html#lab">进入实验 <span aria-hidden="true">→</span></a><a class="btn quiet" href="modules/m06-sequence-pair/index.html">从头学</a><a class="btn quiet" href="modules/m06-sequence-pair/index.html#film">先看影片</a></div>
+<p class="byline">浏览器本地计算 · 不需要登录或安装 · 代码 MIT，内容 CC BY 4.0</p>
+</div>
+<figure class="hero-art"><div class="fp-fig" data-fig="hero"></div><figcaption>教师示例：pos = A B C E D，neg = D A B C E → 包围盒 9 × 4，装进 10 × 8。</figcaption></figure>
+</section>
+<section class="section"><div class="wrap">
+<div class="section-head"><div><p class="eyebrow"><span class="eyebrow-no">01</span> / 这一课</p><h2>学完你能做什么</h2></div><p>约 90–120 分钟（四部影片约 11 分钟、讲解 30 分钟、实验与挑战 30 分钟、Python 30 分钟）</p></div>
+<div class="grid-2"><div><ol class="objectives"><li>说出布图规划的输入、输出和约束，解释为什么直接搜索坐标很麻烦、为什么要用表示法。</li><li>由 pos 与 neg 读出任意两块的相对位置（四种情况），并找出不合法序列对里的全部问题。</li><li>把关系变成水平 / 竖直约束图，写出每条边的不等式，说明约束图为什么没有环。</li><li>用最长路径动态规划算出每块的坐标，解释为什么加前驱的尺寸、为什么取最大。</li><li>把完整、不重叠、装得下、紧凑四个问题分开回答，分清不随排列变化的量与会变化的量。</li><li>推理改动排列对几何的影响（包括“不同写法、同一布局”），并在 Python 中实现校验、建图、DP 与指标。</li></ol></div>
+<div class="prose"><h3>需要的准备</h3><p>会读二维坐标与矩形面积；知道什么是有向图（不熟悉可先看<a href="foundations/index.html">基础速查</a>）。不需要芯片设计背景。</p>
+<h3>它不是什么</h3><p>这是只有几块矩形的教学例子，用来看清表示法与约束推导。真实芯片的布图还要考虑线长、时序、电源与引脚，详细布局、布线与签核由专门的 EDA 工具完成。</p>
+<h3>在课程里的位置</h3><p>教师课程 learn_floorplanning 的 Lab 06（目录编号 <code>module02-05-sequence-pair</code>）。前一课是 B*-tree，后一课是模拟退火：在序列对上做随机搜索。</p></div></div>
+</div></section>
+<section class="section dark" id="intro"><div class="wrap">
+<div class="section-head"><div><p class="eyebrow"><span class="eyebrow-no">02</span> / 影片</p><h2>先看一遍</h2></div><p>四部影片：科普、精讲、进阶、实验演示。中文字幕，不配旁白；画面里的每个数都来自本课同一个引擎。</p></div>
+<div id="intro-film-root"><p class="muted">正在载入影片…</p></div>
+</div></section>
+<section class="section"><div class="wrap">
+<div class="section-head"><div><p class="eyebrow"><span class="eyebrow-no">03</span> / 学习路线</p><h2>八步，从问题到代码</h2></div><p>每一步都链接到模块页的对应位置；可以按顺序学，也可以直接跳到实验。</p></div>
+<div class="route"><a class="mod-card" href="modules/m06-sequence-pair/index.html#m06-problem"><span class="num">01 · 概念</span><h3>布图规划、固定边界、为什么不直接搜坐标</h3></a><a class="mod-card" href="modules/m06-sequence-pair/index.html#m06-rule"><span class="num">02 · 规则</span><h3>两个排列，四种关系</h3></a><a class="mod-card" href="modules/m06-sequence-pair/index.html#m06-graphs"><span class="num">03 · 图</span><h3>水平 / 竖直约束图</h3></a><a class="mod-card" href="modules/m06-sequence-pair/index.html#m06-dp"><span class="num">04 · DP</span><h3>最长路径：加前驱尺寸，取最大</h3></a><a class="mod-card" href="modules/m06-sequence-pair/index.html#m06-metrics"><span class="num">05 · 指标</span><h3>完整、不重叠、装得下、紧凑</h3></a><a class="mod-card" href="modules/m06-sequence-pair/index.html#m06-encoding"><span class="num">06 · 编码</span><h3>改排列、同一布局的多种写法</h3></a><a class="mod-card" href="modules/m06-sequence-pair/index.html#lab"><span class="num">07 · 实验</span><h3>自己改排列，单步看每条约束</h3></a><a class="mod-card" href="modules/m06-sequence-pair/index.html#python"><span class="num">08 · Python</span><h3>五个函数，浏览器里直接运行</h3></a></div>
+</div></section>
+</main>
+<footer class="footer"><div class="wrap">
+<p>Floorplanning · Lesson 6 · 序列对（Sequence-Pair）。教学小例子，不是生产级布图工具。例子与约定来自教师课程 learn_floorplanning（CC BY 4.0），署名见<a href="credits/index.html">资源与贡献</a>；<a href="https://github.com/Su3037/floorplanning-lesson6-sequence-pair">源代码</a>：代码 MIT，内容 CC BY 4.0。</p>
+<p>做法沿用 Learning Clustering 的<a href="https://github.com/Su3037/learning-clustering/tree/main/course-playbook">课程制作手册</a>。</p>
+<p><button class="btn quiet small" type="button" data-pref="reduceMotion">减少动态</button> <button class="btn quiet small" type="button" data-pref="sound">声音</button> · 内容版本 2026.10.30-1</p>
+</div></footer>
+<script type="module">import { initShell } from './assets/core.js'; initShell();</script>
+<script type="module" src="assets/home.js"></script>
+</body>
+</html>

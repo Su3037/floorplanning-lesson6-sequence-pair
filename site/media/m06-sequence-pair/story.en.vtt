@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:04.400
+Five blocks have to go on a chip.
+
+2
+00:00:04.400 --> 00:00:09.400
+Write each lower-left corner: ten numbers.
+
+3
+00:00:11.950 --> 00:00:16.550
+Two rows of letters are enough.
+
+4
+00:00:17.410 --> 00:00:22.210
+Change a coordinate and blocks may pile up.
+
+5
+00:00:22.210 --> 00:00:27.010
+Change the letters and nothing ever overlaps.
+
+6
+00:00:27.010 --> 00:00:30.610
+That is the sequence pair.
+
+7
+00:00:37.000 --> 00:00:41.600
+Take two blocks; look at their order in each row.
+
+8
+00:00:41.600 --> 00:00:45.800
+Same order: the first one is on the left.
+
+9
+00:00:45.800 --> 00:00:50.400
+Opposite: the one first in pos is below.
+
+10
+00:00:51.180 --> 00:00:55.780
+Five blocks, ten pairs, one relation each.
+
+11
+00:00:55.780 --> 00:00:59.980
+Six side by side, four above and below.
+
+12
+00:01:03.150 --> 00:01:07.350
+Left/right forms H; below/above forms V.
+
+13
+00:01:07.350 --> 00:01:12.350
+Each edge: the later block clears the earlier one.
+
+14
+00:01:12.350 --> 00:01:16.750
+Every arrow follows pos, so no cycle.
+
+15
+00:01:20.160 --> 00:01:25.560
+E must clear A, B, C: candidates 3, 5, 7.
+
+16
+00:01:25.560 --> 00:01:28.960
+Take the maximum: x = 7.
+
+17
+00:01:29.100 --> 00:01:33.700
+D clears four blocks: the tallest, B, lifts it to 3.
+
+18
+00:01:33.700 --> 00:01:36.700
+9 × 4, inside the outline.
+
+19
+00:01:42.500 --> 00:01:46.900
+Three blocks: B must clear both A and C.
+
+20
+00:01:46.900 --> 00:01:50.900
+With the minimum, 2, B sits on A.
+
+21
+00:01:50.900 --> 00:01:54.900
+With the maximum, 3, both hold.
+
+22
+00:01:59.270 --> 00:02:03.181
+Identical rows: five blocks in one line.
+
+23
+00:02:03.181 --> 00:02:06.648
+12 wide: it does not fit 10 × 8.
+
+24
+00:02:06.648 --> 00:02:10.337
+Reversed: 10 tall, no fit either.
+
+25
+00:02:10.337 --> 00:02:13.337
+Valid only means no overlap.
+
+26
+00:02:14.160 --> 00:02:19.160
+Floorplanners search among these encodings.
+
+27
+00:02:21.500 --> 00:02:27.500
+Change one letter and the packing may not move.
+
+28
+00:02:27.500 --> 00:02:34.500
+D top-left, E bottom-right: both relations hold.
+
+29
+00:02:34.500 --> 00:02:41.500
+14,400 encodings, only 9,056 packings.
+
+30
+00:02:41.500 --> 00:02:49.500
+Which changes really move a block?
+
+31
+00:02:50.600 --> 00:02:56.600
+In the lab below, edit the two rows yourself.

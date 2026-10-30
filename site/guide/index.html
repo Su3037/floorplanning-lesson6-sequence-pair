@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>如何挑战 · Floorplanning · Lesson 6</title>
+<meta name="description" content="布图规划第 6 课：用两个排列 pos 与 neg 表示矩形布局，由约束图与最长路径算出坐标。中文讲解、四部影片、带页码课件、可编辑排列的浏览器实验、挑战与 Python 练习。">
+<link rel="alternate" hreflang="zh-CN" href="../guide/index.html">
+<link rel="alternate" hreflang="en" href="../en/guide/index.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2032%2032%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2226%22%20height%3D%2226%22%20rx%3D%222%22%20fill%3D%22none%22%20stroke%3D%22%23946a17%22%20stroke-width%3D%221.3%22%20stroke-dasharray%3D%222.4%202%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%2217%22%20width%3D%229%22%20height%3D%2210%22%20fill%3D%22%230f6b5c%22%2F%3E%3Crect%20x%3D%2215%22%20y%3D%2220%22%20width%3D%227%22%20height%3D%227%22%20fill%3D%22%232f5e9e%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%2211%22%20width%3D%2211%22%20height%3D%225%22%20fill%3D%22%23946a17%22%2F%3E%3Crect%20x%3D%2223%22%20y%3D%2221%22%20width%3D%225%22%20height%3D%226%22%20fill%3D%22%236b4c9a%22%2F%3E%3C%2Fsvg%3E">
+<link rel="preload" href="../assets/fonts/noto-serif-sc-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar"><div class="wrap">
+<a class="brand" href="../index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="3" width="26" height="26" rx="2" fill="none" stroke="#946a17" stroke-width="1.3" stroke-dasharray="2.4 2"/><rect x="5" y="17" width="9" height="10" fill="#0f6b5c"/><rect x="15" y="20" width="7" height="7" fill="#2f5e9e"/><rect x="5" y="11" width="11" height="5" fill="#946a17"/><rect x="23" y="21" width="5" height="6" fill="#6b4c9a"/></svg><span class="brand-name">Floorplanning · Lesson 6</span><span class="brand-sub">序列对工作室</span></a>
+<nav class="topnav" aria-label="课程"><a href="../index.html">概览</a><a href="../modules/m06-sequence-pair/index.html">Module 06</a><a href="../foundations/index.html">基础速查</a><a href="../glossary/index.html">术语表</a><a href="../guide/index.html" aria-current="page">如何挑战</a><a href="../credits/index.html">资源与贡献</a><a href="../progress/index.html">学习记录</a></nav>
+<div class="lang-switch" role="group" aria-label="语言"><span aria-current="true">中文</span><a href="../en/guide/index.html" hreflang="en" lang="en" data-lang-link="en">EN</a></div>
+</div></header>
+<main id="main"><section class="section page"><div class="wrap"><div class="prose"><p>&lt;p class=&quot;eyebrow&quot;&gt;挑战使用指南&lt;/p&gt;</p>
+<h2>如何挑战</h2>
+<p>本课 7 道挑战按同一流程进行。它们检查的是“能否用规则算出结果并解释”，不是“有没有看完影片”。</p>
+<ol><li><strong>读任务</strong>：每题开头写着 <code>[类别] 题名</code>、难度，以及“这题检查什么”。</li><li><strong>先预测</strong>：动手前写下你认为的答案。很多题故意挑了容易猜错的地方（例如取最小而不是最大）。</li><li><strong>操作</strong>：填数字、勾选关系或边、排列字母。需要时可以去上方实验里单步验证。</li><li><strong>提交</strong>：判定来自本页同一个序列对引擎，不是手写的答案表。</li><li><strong>看解释</strong>：答对后显示“为什么”；答错时告诉你违反了哪条规则，例如“这对块在 pos 和 neg 里都是 A 在前”。</li><li><strong>再试</strong>：“提示”有两级，先给方向，再给具体关系。“重置重试”会清空本题记录。</li></ol>
+<h3>记录怎么算</h3>
+<table><thead><tr><th>状态</th><th>含义</th></tr></thead><tbody><tr><td>未开始</td><td>还没提交过</td></tr><tr><td>尝试中</td><td>提交过但还没答对</td></tr><tr><td>独立完成</td><td>没看答案就答对</td></tr><tr><td>看过答案后完成</td><td>看过答案与解析之后答对</td></tr></tbody></table>
+<p>看答案不扣分，也不会锁题。两种完成方式分开记录，只是为了让你知道哪些是自己做出来的。记录保存在本机浏览器里（<code>localStorage</code>），可以在<a href="../progress/index.html">学习记录</a>导出或导入。浏览器禁止存储时，页面仍然可用，只是关闭后不保留。</p>
+<h3>类别与难度是两回事</h3>
+<p>类别说明题目的用途：<strong>推演</strong>（按规则手算一步）、<strong>纠错</strong>（找出全部问题）、<strong>构图</strong>（把关系变成边）、<strong>实现</strong>（与 Python 练习对应）、<strong>约束</strong>（自己造一个满足条件的例子）、<strong>比较</strong>（两个写法是否等价）。难度另标“入门 / 练习 / 挑战”。</p>
+<h3>两种需要额外说明的操作</h3>
+<ul><li><strong>排列字母</strong>（c6、c7）：每个字母有 ↑ ↓ 按钮（或 Tab 到按钮后按回车）调整次序，排好后提交；右边的预览随时显示这个序列对算出的布局。任何排列都会先经过合法性检查。</li><li><strong>概念检查</strong>：挑战下方的 6 道单选题，答完立即显示解释，不计入挑战记录。</li></ul></div></div></section></main>
+<footer class="footer"><div class="wrap">
+<p>Floorplanning · Lesson 6 · 序列对（Sequence-Pair）。教学小例子，不是生产级布图工具。例子与约定来自教师课程 learn_floorplanning（CC BY 4.0），署名见<a href="../credits/index.html">资源与贡献</a>；<a href="https://github.com/Su3037/floorplanning-lesson6-sequence-pair">源代码</a>：代码 MIT，内容 CC BY 4.0。</p>
+<p>做法沿用 Learning Clustering 的<a href="https://github.com/Su3037/learning-clustering/tree/main/course-playbook">课程制作手册</a>。</p>
+<p><button class="btn quiet small" type="button" data-pref="reduceMotion">减少动态</button> <button class="btn quiet small" type="button" data-pref="sound">声音</button> · 内容版本 2026.10.30-1</p>
+</div></footer>
+<script type="module">import { initShell } from '../assets/core.js'; initShell();</script>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "2026.10.30-1",
+  "title": "Floorplanning · Lesson 6 · 序列对",
+  "subtitle": "Sequence-Pair Studio",
+  "description": "布图规划第 6 课：用两个排列 pos 与 neg 表示矩形布局，由约束图与最长路径算出坐标。中文讲解、四部影片、带页码课件、可编辑排列的浏览器实验、挑战与 Python 练习。",
+  "scope": "yongfu-li/eda-learning Issue #22（learn_floorplanning · module02-05-sequence-pair · Lab 06）",
+  "modules": ["m06-sequence-pair"]
+}

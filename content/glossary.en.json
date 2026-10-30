@@ -1,0 +1,95 @@
+{
+ "terms": [
+  {
+   "en": "floorplanning",
+   "meaning": "Place every rectangular module (and choose its shape) inside the chip area so that nothing overlaps, everything fits the outline, and the result is compact with short wires.",
+   "notConfuse": "Placement usually means thousands of standard cells; floorplanning handles a few large blocks."
+  },
+  {
+   "en": "module / block",
+   "meaning": "A rectangle of fixed width w and height h, named A–E here. Its coordinate (x, y) is the lower-left corner.",
+   "notConfuse": "“Module 06” is the name of this course unit, not the geometric object."
+  },
+  {
+   "en": "fixed outline",
+   "meaning": "The allowed area W × H, here 10 × 8. Every block must lie inside [0, W] × [0, H].",
+   "notConfuse": "The bounding box is what the blocks actually occupy and changes with the pair; the outline is given and fixed."
+  },
+  {
+   "en": "sequence pair",
+   "meaning": "Two permutations (pos, neg) of the same block ids. The order of any two blocks in both decides whether they are left/right or below/above.",
+   "notConfuse": "A sequence pair encodes relative positions, not coordinates; coordinates come from longest paths."
+  },
+  {
+   "en": "pos and neg (Γ⁺ and Γ⁻)",
+   "meaning": "The two permutations. The literature also writes Γ⁺, Γ⁻ or S1, S2.",
+   "notConfuse": "Some textbooks mirror the vertical rule; that equals this lesson’s convention with pos and neg swapped (see § limits)."
+  },
+  {
+   "en": "relative position",
+   "meaning": "One of four for every pair: left, right, below, above. Here: before in both → left; before in pos, after in neg → below.",
+   "notConfuse": "“Left of” does not mean touching; it only requires x[j] ≥ x[i] + w[i]."
+  },
+  {
+   "en": "horizontal constraint graph (H)",
+   "meaning": "An edge i → j for every “i left of j”, meaning x[j] ≥ x[i] + w[i].",
+   "notConfuse": "No incoming H edge does not mean leftmost; it means nothing must be to its left, so x = 0."
+  },
+  {
+   "en": "vertical constraint graph (V)",
+   "meaning": "An edge i → j for every “i below j”, meaning y[j] ≥ y[i] + h[i].",
+   "notConfuse": "Each pair goes into exactly one of H and V, never both."
+  },
+  {
+   "en": "directed acyclic graph (DAG)",
+   "meaning": "A directed graph with no cycle. H and V are DAGs because every edge points forward in pos.",
+   "notConfuse": "Acyclicity is guaranteed by the permutations; no separate check is needed."
+  },
+  {
+   "en": "longest path",
+   "meaning": "The largest total weight of a path into a node of a weighted DAG. Here the weight is the predecessor’s width (or height), and the result is the smallest feasible coordinate.",
+   "notConfuse": "Taking the maximum is not about spreading blocks out: every incoming edge is a lower bound and all must hold."
+  },
+  {
+   "en": "topological order",
+   "meaning": "An order of the nodes in which every edge points forward. pos itself is a topological order of both H and V.",
+   "notConfuse": "A topological order is not unique; following pos keeps the trace predictable."
+  },
+  {
+   "en": "packing",
+   "meaning": "All coordinates computed from a pair. Each block slides as far left and down as its constraints allow.",
+   "notConfuse": "Different pairs can give the same packing: 3 pairs share the instructor’s packing."
+  },
+  {
+   "en": "bounding box",
+   "meaning": "The smallest rectangle from the origin to (max(x+w), max(y+h)). The instructor’s pair gives 9 × 4.",
+   "notConfuse": "A small box does not mean it fits: 12 × 3 has area 36 too, but is wider than 10."
+  },
+  {
+   "en": "overlap",
+   "meaning": "Two blocks whose intersection has positive area. Sharing an edge or a corner (touching) is not overlap.",
+   "notConfuse": "A packing from a sequence pair never overlaps; fit is what must be checked separately."
+  },
+  {
+   "en": "fits the outline",
+   "meaning": "Bounding-box width ≤ W and height ≤ H. 13,680 of the 14,400 five-block pairs fit.",
+   "notConfuse": "Non-overlap and fit are two questions; a valid pair can still overflow."
+  },
+  {
+   "en": "outline density / dead space",
+   "meaning": "Total block area ÷ outline area (23 / 80 = 28.75 %), and 80 − 23 = 57.",
+   "notConfuse": "Both numbers are the same for every pair and cannot compare two pairs; use bbox area or utilisation."
+  },
+  {
+   "en": "bounding-box utilisation",
+   "meaning": "Total block area ÷ bounding-box area. The instructor’s pair gives 23 / 36 = 63.89 % and it changes with the pair.",
+   "notConfuse": "High utilisation can still overflow the outline; read it together with fit."
+  },
+  {
+   "en": "neighbour move",
+   "meaning": "Swap two blocks in one permutation, or in both, to get a new pair. Simulated annealing walks randomly between such neighbours.",
+   "notConfuse": "One move may leave the packing unchanged, or move many blocks."
+  }
+ ],
+ "pronunciationMd": "### Pronouncing names (for a possible narrated version)\n\n| Written | Suggested reading |\n| --- | --- |\n| Sequence-Pair | “sequence pair” |\n| pos, neg | “pos”, “neg” (positive and negative sequence) |\n| Γ⁺, Γ⁻ | “gamma plus”, “gamma minus” |\n| Murata | moo-RAH-tah |\n| DAG | spelled out |\n\nThe films have no narration; this table is only for an optional voiced version, and no reading is claimed natural without a listening test."
+}

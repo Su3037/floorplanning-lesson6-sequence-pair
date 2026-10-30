@@ -1,0 +1,42 @@
+# Tests, then deploys the static site in site/ to GitHub Pages (project subpath /floorplanning-lesson6-sequence-pair/).
+# Repository settings → Pages → Source: "GitHub Actions".
+name: pages
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: node --test tests/engines.test.mjs tests/challenges.test.mjs tests/site.test.mjs
+      - run: python3 tests/crosscheck.py
+      - run: python3 python/m06-sequence-pair/check.py python/m06-sequence-pair/reference.py
+      - run: python3 python/m06-sequence-pair/check.py python/m06-sequence-pair/en/reference.py
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: test
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: site }
+      - id: deployment
+        uses: actions/deploy-pages@v4

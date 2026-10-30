@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foundations · Floorplanning · Lesson 6</title>
+<meta name="description" content="Floorplanning lesson 6: two permutations, pos and neg, describe a rectangle layout; constraint graphs and longest paths turn them into coordinates. Lesson, four films, numbered slides, an in-browser lab with editable permutations, challenges and Python exercises.">
+<link rel="alternate" hreflang="zh-CN" href="../../foundations/index.html">
+<link rel="alternate" hreflang="en" href="../../en/foundations/index.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2032%2032%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2226%22%20height%3D%2226%22%20rx%3D%222%22%20fill%3D%22none%22%20stroke%3D%22%23946a17%22%20stroke-width%3D%221.3%22%20stroke-dasharray%3D%222.4%202%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%2217%22%20width%3D%229%22%20height%3D%2210%22%20fill%3D%22%230f6b5c%22%2F%3E%3Crect%20x%3D%2215%22%20y%3D%2220%22%20width%3D%227%22%20height%3D%227%22%20fill%3D%22%232f5e9e%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%2211%22%20width%3D%2211%22%20height%3D%225%22%20fill%3D%22%23946a17%22%2F%3E%3Crect%20x%3D%2223%22%20y%3D%2221%22%20width%3D%225%22%20height%3D%226%22%20fill%3D%22%236b4c9a%22%2F%3E%3C%2Fsvg%3E">
+<link rel="preload" href="../../assets/fonts/newsreader-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/course.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar"><div class="wrap">
+<a class="brand" href="../index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="3" width="26" height="26" rx="2" fill="none" stroke="#946a17" stroke-width="1.3" stroke-dasharray="2.4 2"/><rect x="5" y="17" width="9" height="10" fill="#0f6b5c"/><rect x="15" y="20" width="7" height="7" fill="#2f5e9e"/><rect x="5" y="11" width="11" height="5" fill="#946a17"/><rect x="23" y="21" width="5" height="6" fill="#6b4c9a"/></svg><span class="brand-name">Floorplanning · Lesson 6</span><span class="brand-sub">Sequence-Pair Studio</span></a>
+<nav class="topnav" aria-label="Course"><a href="../index.html">Overview</a><a href="../modules/m06-sequence-pair/index.html">Module 06</a><a href="../foundations/index.html" aria-current="page">Foundations</a><a href="../glossary/index.html">Glossary</a><a href="../guide/index.html">Challenges</a><a href="../credits/index.html">Credits</a><a href="../progress/index.html">Progress</a></nav>
+<div class="lang-switch" role="group" aria-label="Language"><a href="../../foundations/index.html" hreflang="zh-CN" lang="zh-CN" data-lang-link="zh">中文</a><span aria-current="true">EN</span></div>
+</div></header>
+<main id="main"><section class="section page"><div class="wrap"><div class="prose"><p>&lt;p class=&quot;eyebrow&quot;&gt;Foundations&lt;/p&gt;</p>
+<h2>Foundations: rectangles, coordinates, graphs, longest paths</h2>
+<p>The minimum background for this lesson. The lesson expands each idea the first time it is used; this page keeps the definitions in one place.</p>
+<h3>Why chips are floorplanned first</h3>
+<p>A chip often holds dozens of large blocks: processor cores, memories, analogue circuits, interfaces. Their shapes are roughly fixed, and they must be arranged on a die of given size so that <strong>nothing overlaps and everything fits the outline</strong>, with heavily connected blocks close together. This step is <strong>floorplanning</strong>, and it bounds how good the later placement and routing can be.</p>
+<h3>Rectangles and coordinates</h3>
+<ul><li>Each block is a rectangle of width w and height h; in this lesson it is neither rotated nor reshaped.</li><li>The coordinate (x, y) is the <strong>lower-left corner</strong>. The origin is lower-left, x grows right and y grows up (the instructor’s convention).</li><li>A block occupies [x, x + w] × [y, y + h]. Blocks that only share an edge or a corner are <strong>touching</strong>, not overlapping; overlap needs a positive-area intersection.</li></ul>
+<h3>Writing “left of” as an inequality</h3>
+<p>“A is left of B” does not mean the blocks touch. It means B’s left side does not cross A’s right side:</p>
+<blockquote class="callout"><p>x[B] ≥ x[A] + w[A]</p></blockquote>
+<p>“A is below B” likewise: y[B] ≥ y[A] + h[A]. A layout has many such lower bounds, and one block may be bound by several at once.</p>
+<h3>Directed graphs and topological order</h3>
+<ul><li><strong>Directed graph</strong>: nodes and directed edges. Here the nodes are blocks, and an edge i → j is one lower bound.</li><li><strong>Directed acyclic graph (DAG)</strong>: following edges never returns to the start.</li><li><strong>Topological order</strong>: a line-up of the nodes in which every edge points forward. Every DAG has one.</li></ul>
+<h3>Why the longest path gives the smallest coordinate</h3>
+<p>Use “the predecessor’s width” as the length of an edge. A block’s x must be at least every predecessor’s x plus that predecessor’s width, so the smallest it can be is the <strong>largest</strong> of those values; with no predecessor it is 0. Working through the blocks in topological order, looking at each incoming edge once, gives every coordinate. That is the longest path in a DAG.</p>
+<table><thead><tr><th>Algorithm</th><th>Work</th><th>Cost (n blocks)</th></tr></thead><tbody><tr><td>This lesson’s evaluator</td><td>pairwise graph + two DP passes</td><td>O(n²)</td></tr><tr><td>FAST-SP (further reading)</td><td>weighted longest common subsequence</td><td>O(n log n)</td></tr></tbody></table>
+<h3>The five-block example</h3>
+<table><thead><tr><th>Block</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr></thead><tbody><tr><td>w × h</td><td>3 × 2</td><td>2 × 3</td><td>2 × 2</td><td>3 × 1</td><td>2 × 2</td></tr></tbody></table>
+<p>Total block area 6 + 6 + 4 + 3 + 4 = 23; the fixed outline is 10 × 8 = 80.</p></div></div></section></main>
+<footer class="footer"><div class="wrap">
+<p>Floorplanning · Lesson 6 · Sequence-Pair. A teaching example, not a production floorplanner. The examples and convention come from the instructor’s learn_floorplanning course (CC BY 4.0), credited on the <a href="../credits/index.html">Credits</a> page; <a href="https://github.com/Su3037/floorplanning-lesson6-sequence-pair">source code</a>: code MIT, content CC BY 4.0.</p>
+<p>Built with the Learning Clustering <a href="https://github.com/Su3037/learning-clustering/tree/main/course-playbook">course playbook</a>.</p>
+<p><button class="btn quiet small" type="button" data-pref="reduceMotion">Reduce motion</button> <button class="btn quiet small" type="button" data-pref="sound">Sound</button> · Content version 2026.10.30-1</p>
+</div></footer>
+<script type="module">import { initShell } from '../../assets/core.js'; initShell();</script>
+
+</body>
+</html>

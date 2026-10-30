@@ -1,0 +1,13 @@
+{
+  "name": "floorplanning-lesson6-sequence-pair",
+  "private": true,
+  "type": "module",
+  "description": "Floorplanning · Lesson 6 · 序列对 Sequence-Pair — interactive bilingual lesson (static site, GitHub Pages)",
+  "scripts": {
+    "test": "node --test tests/engines.test.mjs tests/challenges.test.mjs tests/site.test.mjs",
+    "build": "sh scripts/build.sh",
+    "traces": "node scripts/build-traces.mjs",
+    "serve": "python3 scripts/serve.py 8800 floorplanning-lesson6-sequence-pair"
+  },
+  "license": "MIT"
+}

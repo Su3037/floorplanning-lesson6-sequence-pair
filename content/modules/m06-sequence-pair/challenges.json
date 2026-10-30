@@ -1,0 +1,58 @@
+[
+  {
+    "id": "c1",
+    "type": "推演",
+    "difficulty": "Intro",
+    "title": "读出相对位置",
+    "objectiveId": "o2",
+    "validatorId": "m06-sequence-pair/c1"
+  },
+  {
+    "id": "c2",
+    "type": "纠错",
+    "difficulty": "Intro",
+    "title": "诊断不合法的序列对",
+    "objectiveId": "o2",
+    "validatorId": "m06-sequence-pair/c2"
+  },
+  {
+    "id": "c3",
+    "type": "构图",
+    "difficulty": "Practice",
+    "title": "谁指向 E，谁指向 D",
+    "objectiveId": "o3",
+    "validatorId": "m06-sequence-pair/c3"
+  },
+  {
+    "id": "c4",
+    "type": "推演",
+    "difficulty": "Practice",
+    "title": "算一个坐标",
+    "objectiveId": "o4",
+    "validatorId": "m06-sequence-pair/c4"
+  },
+  {
+    "id": "c5",
+    "type": "实现",
+    "difficulty": "Practice",
+    "title": "写出整张布局",
+    "objectiveId": "o4",
+    "validatorId": "m06-sequence-pair/c5"
+  },
+  {
+    "id": "c6",
+    "type": "约束",
+    "difficulty": "Stretch",
+    "title": "造一个合法却装不下的序列对",
+    "objectiveId": "o5",
+    "validatorId": "m06-sequence-pair/c6"
+  },
+  {
+    "id": "c7",
+    "type": "比较",
+    "difficulty": "Stretch",
+    "title": "换一种写法，同一张布局",
+    "objectiveId": "o6",
+    "validatorId": "m06-sequence-pair/c7"
+  }
+]

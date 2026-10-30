@@ -1,0 +1,343 @@
+{
+  "moduleId": "m06-sequence-pair",
+  "objectives": [
+    {
+      "id": "o1",
+      "sections": [
+        "m06-problem"
+      ],
+      "sceneIds": [
+        "p-die",
+        "k01-problem"
+      ],
+      "slideIds": [
+        "m06-problem"
+      ],
+      "experiment": "预设“教师示例”：看 10 × 8 边界里的五块与它们的坐标",
+      "challenges": [],
+      "python": [
+        "metrics"
+      ],
+      "video": [
+        {
+          "sceneId": "p-die",
+          "film": "story",
+          "start": 0
+        },
+        {
+          "sceneId": "k01-problem",
+          "film": "concise",
+          "start": 3.4
+        }
+      ],
+      "slides": [
+        {
+          "slideId": "m06-problem",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "o2",
+      "sections": [
+        "m06-rule"
+      ],
+      "sceneIds": [
+        "p-rule",
+        "k02-rule"
+      ],
+      "slideIds": [
+        "m06-rule",
+        "m06-two",
+        "m06-pairs"
+      ],
+      "experiment": "第 2–11 步：每对块的 pos / neg 位置与关系；改坏一个排列看合法性报告",
+      "challenges": [
+        "c1",
+        "c2"
+      ],
+      "python": [
+        "validate_pair",
+        "relation"
+      ],
+      "video": [
+        {
+          "sceneId": "p-rule",
+          "film": "story",
+          "start": 37
+        },
+        {
+          "sceneId": "k02-rule",
+          "film": "concise",
+          "start": 17.56
+        }
+      ],
+      "slides": [
+        {
+          "slideId": "m06-rule",
+          "page": 3
+        },
+        {
+          "slideId": "m06-two",
+          "page": 4
+        },
+        {
+          "slideId": "m06-pairs",
+          "page": 5
+        }
+      ]
+    },
+    {
+      "id": "o3",
+      "sections": [
+        "m06-graphs"
+      ],
+      "sceneIds": [
+        "p-graphs",
+        "k03-graphs",
+        "a03-acyclic"
+      ],
+      "slideIds": [
+        "m06-graphs"
+      ],
+      "experiment": "约束图视图：点一条边看它的不等式",
+      "challenges": [
+        "c3"
+      ],
+      "python": [
+        "build_graphs"
+      ],
+      "video": [
+        {
+          "sceneId": "p-graphs",
+          "film": "story",
+          "start": 63.15
+        },
+        {
+          "sceneId": "k03-graphs",
+          "film": "concise",
+          "start": 36.18
+        },
+        {
+          "sceneId": "a03-acyclic",
+          "film": "advanced",
+          "start": 37
+        }
+      ],
+      "slides": [
+        {
+          "slideId": "m06-graphs",
+          "page": 6
+        }
+      ]
+    },
+    {
+      "id": "o4",
+      "sections": [
+        "m06-dp"
+      ],
+      "sceneIds": [
+        "p-dp",
+        "p-max",
+        "k04-dpx",
+        "k05-dpy",
+        "a01-longest",
+        "a02-max"
+      ],
+      "slideIds": [
+        "m06-why-max",
+        "m06-dp-x",
+        "m06-dp-y"
+      ],
+      "experiment": "DP 候选表：E 的三个候选 3、5、7 取 7",
+      "challenges": [
+        "c4",
+        "c5"
+      ],
+      "python": [
+        "longest_path"
+      ],
+      "video": [
+        {
+          "sceneId": "p-dp",
+          "film": "story",
+          "start": 80.16
+        },
+        {
+          "sceneId": "p-max",
+          "film": "story",
+          "start": 102.5
+        },
+        {
+          "sceneId": "k04-dpx",
+          "film": "concise",
+          "start": 50.38
+        },
+        {
+          "sceneId": "k05-dpy",
+          "film": "concise",
+          "start": 70.8
+        },
+        {
+          "sceneId": "a01-longest",
+          "film": "advanced",
+          "start": 3.4
+        },
+        {
+          "sceneId": "a02-max",
+          "film": "advanced",
+          "start": 22.2
+        }
+      ],
+      "slides": [
+        {
+          "slideId": "m06-why-max",
+          "page": 7
+        },
+        {
+          "slideId": "m06-dp-x",
+          "page": 8
+        },
+        {
+          "slideId": "m06-dp-y",
+          "page": 9
+        }
+      ]
+    },
+    {
+      "id": "o5",
+      "sections": [
+        "m06-metrics"
+      ],
+      "sceneIds": [
+        "p-pack",
+        "p-overflow",
+        "k06-metrics",
+        "k07-overflow",
+        "a04-fit"
+      ],
+      "slideIds": [
+        "m06-packing",
+        "m06-overflow"
+      ],
+      "experiment": "预设“一字排开”与“一列叠高”：不重叠但装不下",
+      "challenges": [
+        "c6"
+      ],
+      "python": [
+        "metrics"
+      ],
+      "video": [
+        {
+          "sceneId": "p-pack",
+          "film": "story",
+          "start": 89.1
+        },
+        {
+          "sceneId": "p-overflow",
+          "film": "story",
+          "start": 119.27
+        },
+        {
+          "sceneId": "k06-metrics",
+          "film": "concise",
+          "start": 83.98
+        },
+        {
+          "sceneId": "k07-overflow",
+          "film": "concise",
+          "start": 97.89
+        },
+        {
+          "sceneId": "a04-fit",
+          "film": "advanced",
+          "start": 54.4
+        }
+      ],
+      "slides": [
+        {
+          "slideId": "m06-packing",
+          "page": 10
+        },
+        {
+          "slideId": "m06-overflow",
+          "page": 11
+        }
+      ]
+    },
+    {
+      "id": "o6",
+      "sections": [
+        "m06-encoding",
+        "m06-pseudocode",
+        "m06-limits"
+      ],
+      "sceneIds": [
+        "p-twin",
+        "k08-summary",
+        "a05-twins",
+        "a06-mirror",
+        "a07-cost"
+      ],
+      "slideIds": [
+        "m06-encoding",
+        "m06-pseudo",
+        "m06-limits"
+      ],
+      "experiment": "“随机邻居”按钮与预设“同一布局的另一种写法”",
+      "challenges": [
+        "c7"
+      ],
+      "python": [
+        "validate_pair",
+        "relation",
+        "build_graphs",
+        "longest_path",
+        "metrics"
+      ],
+      "video": [
+        {
+          "sceneId": "p-twin",
+          "film": "story",
+          "start": 141.5
+        },
+        {
+          "sceneId": "k08-summary",
+          "film": "concise",
+          "start": 111.84
+        },
+        {
+          "sceneId": "a05-twins",
+          "film": "advanced",
+          "start": 71.67
+        },
+        {
+          "sceneId": "a06-mirror",
+          "film": "advanced",
+          "start": 92.38
+        },
+        {
+          "sceneId": "a07-cost",
+          "film": "advanced",
+          "start": 106.49
+        }
+      ],
+      "slides": [
+        {
+          "slideId": "m06-encoding",
+          "page": 12
+        },
+        {
+          "slideId": "m06-pseudo",
+          "page": 13
+        },
+        {
+          "slideId": "m06-limits",
+          "page": 14
+        }
+      ]
+    }
+  ],
+  "contentVersion": "2026.10.30-1",
+  "generated": "2026-10-30"
+}

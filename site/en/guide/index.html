@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How challenges work · Floorplanning · Lesson 6</title>
+<meta name="description" content="Floorplanning lesson 6: two permutations, pos and neg, describe a rectangle layout; constraint graphs and longest paths turn them into coordinates. Lesson, four films, numbered slides, an in-browser lab with editable permutations, challenges and Python exercises.">
+<link rel="alternate" hreflang="zh-CN" href="../../guide/index.html">
+<link rel="alternate" hreflang="en" href="../../en/guide/index.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2032%2032%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2226%22%20height%3D%2226%22%20rx%3D%222%22%20fill%3D%22none%22%20stroke%3D%22%23946a17%22%20stroke-width%3D%221.3%22%20stroke-dasharray%3D%222.4%202%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%2217%22%20width%3D%229%22%20height%3D%2210%22%20fill%3D%22%230f6b5c%22%2F%3E%3Crect%20x%3D%2215%22%20y%3D%2220%22%20width%3D%227%22%20height%3D%227%22%20fill%3D%22%232f5e9e%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%2211%22%20width%3D%2211%22%20height%3D%225%22%20fill%3D%22%23946a17%22%2F%3E%3Crect%20x%3D%2223%22%20y%3D%2221%22%20width%3D%225%22%20height%3D%226%22%20fill%3D%22%236b4c9a%22%2F%3E%3C%2Fsvg%3E">
+<link rel="preload" href="../../assets/fonts/newsreader-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/course.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar"><div class="wrap">
+<a class="brand" href="../index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="3" width="26" height="26" rx="2" fill="none" stroke="#946a17" stroke-width="1.3" stroke-dasharray="2.4 2"/><rect x="5" y="17" width="9" height="10" fill="#0f6b5c"/><rect x="15" y="20" width="7" height="7" fill="#2f5e9e"/><rect x="5" y="11" width="11" height="5" fill="#946a17"/><rect x="23" y="21" width="5" height="6" fill="#6b4c9a"/></svg><span class="brand-name">Floorplanning · Lesson 6</span><span class="brand-sub">Sequence-Pair Studio</span></a>
+<nav class="topnav" aria-label="Course"><a href="../index.html">Overview</a><a href="../modules/m06-sequence-pair/index.html">Module 06</a><a href="../foundations/index.html">Foundations</a><a href="../glossary/index.html">Glossary</a><a href="../guide/index.html" aria-current="page">Challenges</a><a href="../credits/index.html">Credits</a><a href="../progress/index.html">Progress</a></nav>
+<div class="lang-switch" role="group" aria-label="Language"><a href="../../guide/index.html" hreflang="zh-CN" lang="zh-CN" data-lang-link="zh">中文</a><span aria-current="true">EN</span></div>
+</div></header>
+<main id="main"><section class="section page"><div class="wrap"><div class="prose"><p>&lt;p class=&quot;eyebrow&quot;&gt;How challenges work&lt;/p&gt;</p>
+<h2>How challenges work</h2>
+<p>The 7 challenges follow the same steps. They check whether you can compute a result from the rules and explain it, not whether you watched the film.</p>
+<ol><li><strong>Read the task</strong>: each opens with <code>[category] title</code>, a level, and what it checks.</li><li><strong>Predict first</strong>: write down your answer before acting. Many tasks target a tempting mistake, such as taking the minimum instead of the maximum.</li><li><strong>Act</strong>: enter numbers, tick relations or edges, arrange letters. Step through the lab above whenever you want to check.</li><li><strong>Submit</strong>: the verdict comes from the same sequence-pair engine as the lab, not a hand-typed answer table.</li><li><strong>Read the explanation</strong>: a correct answer shows why; a wrong one names the rule it breaks, for example “A comes first in both pos and neg”.</li><li><strong>Try again</strong>: hints come in two levels, a direction then a concrete relation. “Reset” clears the record for that task.</li></ol>
+<h3>How the record works</h3>
+<table><thead><tr><th>Status</th><th>Meaning</th></tr></thead><tbody><tr><td>Not started</td><td>never submitted</td></tr><tr><td>Trying</td><td>submitted but not yet correct</td></tr><tr><td>Solved</td><td>correct without viewing the answer</td></tr><tr><td>Solved after answer</td><td>correct after viewing the answer and explanation</td></tr></tbody></table>
+<p>Viewing the answer costs nothing and locks nothing; the two kinds of completion are kept apart only so you know what you did yourself. The record lives in this browser (<code>localStorage</code>) and can be exported or imported on <a href="../progress/index.html">My progress</a>. If the browser blocks storage the page still works, it just forgets on close.</p>
+<h3>Category and level are different things</h3>
+<p>The category says what a task is for: <strong>trace</strong> (compute one step by the rule), <strong>debug</strong> (find every problem), <strong>build</strong> (turn relations into edges), <strong>implement</strong> (matches the Python exercise), <strong>constraint</strong> (make an example that meets a condition), <strong>compare</strong> (are two encodings equivalent). The level is marked separately as Intro / Practice / Stretch.</p>
+<h3>Two operations that need a word</h3>
+<ul><li><strong>Arranging letters</strong> (c6, c7): each letter has ↑ ↓ buttons (or Tab to a button and press Enter) to change the order, then submit; the preview on the right always shows the packing of that pair. Every arrangement is checked for validity first.</li><li><strong>Concept checks</strong>: six single-choice questions below the challenges. The explanation appears at once; they do not count toward the challenge record.</li></ul></div></div></section></main>
+<footer class="footer"><div class="wrap">
+<p>Floorplanning · Lesson 6 · Sequence-Pair. A teaching example, not a production floorplanner. The examples and convention come from the instructor’s learn_floorplanning course (CC BY 4.0), credited on the <a href="../credits/index.html">Credits</a> page; <a href="https://github.com/Su3037/floorplanning-lesson6-sequence-pair">source code</a>: code MIT, content CC BY 4.0.</p>
+<p>Built with the Learning Clustering <a href="https://github.com/Su3037/learning-clustering/tree/main/course-playbook">course playbook</a>.</p>
+<p><button class="btn quiet small" type="button" data-pref="reduceMotion">Reduce motion</button> <button class="btn quiet small" type="button" data-pref="sound">Sound</button> · Content version 2026.10.30-1</p>
+</div></footer>
+<script type="module">import { initShell } from '../../assets/core.js'; initShell();</script>
+
+</body>
+</html>

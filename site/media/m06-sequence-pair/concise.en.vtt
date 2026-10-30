@@ -1,0 +1,109 @@
+WEBVTT
+
+1
+00:00:03.400 --> 00:00:07.533
+Five rectangles, fixed sizes, no rotation.
+
+2
+00:00:07.533 --> 00:00:12.556
+Fixed outline 10 × 8; origin lower-left, y up.
+
+3
+00:00:12.556 --> 00:00:17.156
+Given pos and neg, find every block's coordinates.
+
+4
+00:00:17.556 --> 00:00:22.356
+For each pair, compare its order in the two permutations.
+
+5
+00:00:22.356 --> 00:00:25.956
+First in both: on the left.
+
+6
+00:00:25.956 --> 00:00:30.311
+First in pos, second in neg: below.
+
+7
+00:00:30.311 --> 00:00:35.778
+If a book says 'above', swap the two sequences.
+
+8
+00:00:36.178 --> 00:00:41.378
+Ten pairs, each relation written down.
+
+9
+00:00:41.378 --> 00:00:45.378
+Left/right goes into H, below/above into V.
+
+10
+00:00:45.378 --> 00:00:49.978
+Each pair goes into one graph: six in H, four in V.
+
+11
+00:00:50.378 --> 00:00:55.978
+In pos order, compute x block by block.
+
+12
+00:00:55.978 --> 00:01:00.978
+E's predecessors A, B, C: candidates 3, 5, 7.
+
+13
+00:01:00.978 --> 00:01:06.000
+Add the predecessor's width; the maximum, x[E] = 7.
+
+14
+00:01:06.000 --> 00:01:10.400
+D has no horizontal predecessor: x[D] = 0.
+
+15
+00:01:10.800 --> 00:01:15.400
+Now y: D's vertical predecessors are the other four.
+
+16
+00:01:15.400 --> 00:01:19.978
+The tallest is B: y[D] = 0 + 3 = 3.
+
+17
+00:01:19.978 --> 00:01:23.578
+The other four stay at y = 0.
+
+18
+00:01:23.978 --> 00:01:28.978
+Then answer four separate questions.
+
+19
+00:01:28.978 --> 00:01:32.889
+Box 9 × 4, inside 10 × 8.
+
+20
+00:01:32.889 --> 00:01:37.489
+Outline unused and density are constants.
+
+21
+00:01:37.889 --> 00:01:42.689
+Identical permutations: one row, 12 wide.
+
+22
+00:01:42.689 --> 00:01:47.044
+Reverse neg: one column, 10 tall.
+
+23
+00:01:47.044 --> 00:01:51.444
+Both valid and overlap-free, neither fits.
+
+24
+00:01:51.844 --> 00:01:55.978
+Same order is left/right; opposite is below/above.
+
+25
+00:01:55.978 --> 00:01:59.667
+One edge per pair, all along pos.
+
+26
+00:01:59.667 --> 00:02:04.467
+A coordinate is a longest path: add the size, take the max.
+
+27
+00:02:04.467 --> 00:02:09.467
+No overlap is guaranteed; fit is checked separately.

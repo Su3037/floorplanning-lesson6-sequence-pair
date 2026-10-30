@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>基础速查 · Floorplanning · Lesson 6</title>
+<meta name="description" content="布图规划第 6 课：用两个排列 pos 与 neg 表示矩形布局，由约束图与最长路径算出坐标。中文讲解、四部影片、带页码课件、可编辑排列的浏览器实验、挑战与 Python 练习。">
+<link rel="alternate" hreflang="zh-CN" href="../foundations/index.html">
+<link rel="alternate" hreflang="en" href="../en/foundations/index.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2032%2032%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2226%22%20height%3D%2226%22%20rx%3D%222%22%20fill%3D%22none%22%20stroke%3D%22%23946a17%22%20stroke-width%3D%221.3%22%20stroke-dasharray%3D%222.4%202%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%2217%22%20width%3D%229%22%20height%3D%2210%22%20fill%3D%22%230f6b5c%22%2F%3E%3Crect%20x%3D%2215%22%20y%3D%2220%22%20width%3D%227%22%20height%3D%227%22%20fill%3D%22%232f5e9e%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%2211%22%20width%3D%2211%22%20height%3D%225%22%20fill%3D%22%23946a17%22%2F%3E%3Crect%20x%3D%2223%22%20y%3D%2221%22%20width%3D%225%22%20height%3D%226%22%20fill%3D%22%236b4c9a%22%2F%3E%3C%2Fsvg%3E">
+<link rel="preload" href="../assets/fonts/noto-serif-sc-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar"><div class="wrap">
+<a class="brand" href="../index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="3" width="26" height="26" rx="2" fill="none" stroke="#946a17" stroke-width="1.3" stroke-dasharray="2.4 2"/><rect x="5" y="17" width="9" height="10" fill="#0f6b5c"/><rect x="15" y="20" width="7" height="7" fill="#2f5e9e"/><rect x="5" y="11" width="11" height="5" fill="#946a17"/><rect x="23" y="21" width="5" height="6" fill="#6b4c9a"/></svg><span class="brand-name">Floorplanning · Lesson 6</span><span class="brand-sub">序列对工作室</span></a>
+<nav class="topnav" aria-label="课程"><a href="../index.html">概览</a><a href="../modules/m06-sequence-pair/index.html">Module 06</a><a href="../foundations/index.html" aria-current="page">基础速查</a><a href="../glossary/index.html">术语表</a><a href="../guide/index.html">如何挑战</a><a href="../credits/index.html">资源与贡献</a><a href="../progress/index.html">学习记录</a></nav>
+<div class="lang-switch" role="group" aria-label="语言"><span aria-current="true">中文</span><a href="../en/foundations/index.html" hreflang="en" lang="en" data-lang-link="en">EN</a></div>
+</div></header>
+<main id="main"><section class="section page"><div class="wrap"><div class="prose"><p>&lt;p class=&quot;eyebrow&quot;&gt;基础速查&lt;/p&gt;</p>
+<h2>基础速查：矩形、坐标、图、最长路径</h2>
+<p>这页是本课用到的最少前置知识。讲解第一次用到某个概念时还会再展开；这里给统一的定义，方便回头查。</p>
+<h3>为什么芯片要先做布图规划</h3>
+<p>一颗芯片里常有几十个大模块：处理器核、存储器、模拟电路、接口。它们的形状大致固定，要在一块给定大小的硅片上摆好：<strong>互不重叠、全部装进边界</strong>，并且相互连线多的模块尽量靠近。这一步叫<strong>布图规划（floorplanning）</strong>，它决定了后面布局、布线能做到多好。</p>
+<h3>矩形与坐标</h3>
+<ul><li>每个模块是一个宽 w、高 h 的矩形，本课不旋转、不改形状。</li><li>坐标 (x, y) 指矩形的<strong>左下角</strong>。原点在左下，x 向右、y 向上（教师课程的约定）。</li><li>矩形占据 [x, x + w] × [y, y + h]。两块只是边或角相碰叫<strong>贴边</strong>，不算重叠；交集有正面积才是重叠。</li></ul>
+<h3>用不等式写“在左边”</h3>
+<p>“A 在 B 左边”不是说两块挨着，而是说 B 的左边不越过 A 的右边：</p>
+<blockquote class="callout"><p>x[B] ≥ x[A] + w[A]</p></blockquote>
+<p>“A 在 B 下边”同理：y[B] ≥ y[A] + h[A]。一张布局里有很多这样的下限，同一块可能同时被几个下限约束。</p>
+<h3>有向图与拓扑序</h3>
+<ul><li><strong>有向图</strong>：点和带方向的边。本课的点是模块，边 i → j 表示一条下限。</li><li><strong>有向无环图（DAG）</strong>：沿边走永远回不到起点。</li><li><strong>拓扑序</strong>：把点排成一列，使每条边都从前指向后。DAG 一定有拓扑序。</li></ul>
+<h3>最长路径为什么给出最小坐标</h3>
+<p>把“前驱的宽”当作边的长度。一块的 x 必须不小于每个前驱的 x 加上前驱的宽，所以它最小只能是这些值里<strong>最大</strong>的那个；没有前驱就是 0。按拓扑序逐块计算，每块只看一次所有入边，就得到全部坐标。这正是 DAG 上的最长路径。</p>
+<table><thead><tr><th>算法</th><th>处理</th><th>复杂度（n 块）</th></tr></thead><tbody><tr><td>本课的求值</td><td>两两比较建图 + 两遍 DP</td><td>O(n²)</td></tr><tr><td>FAST-SP（拓展阅读）</td><td>用加权最长公共子序列</td><td>O(n log n)</td></tr></tbody></table>
+<h3>本课的五块例子</h3>
+<table><thead><tr><th>块</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr></thead><tbody><tr><td>宽 × 高</td><td>3 × 2</td><td>2 × 3</td><td>2 × 2</td><td>3 × 1</td><td>2 × 2</td></tr></tbody></table>
+<p>块的总面积 6 + 6 + 4 + 3 + 4 = 23，固定边界 10 × 8 = 80。</p></div></div></section></main>
+<footer class="footer"><div class="wrap">
+<p>Floorplanning · Lesson 6 · 序列对（Sequence-Pair）。教学小例子，不是生产级布图工具。例子与约定来自教师课程 learn_floorplanning（CC BY 4.0），署名见<a href="../credits/index.html">资源与贡献</a>；<a href="https://github.com/Su3037/floorplanning-lesson6-sequence-pair">源代码</a>：代码 MIT，内容 CC BY 4.0。</p>
+<p>做法沿用 Learning Clustering 的<a href="https://github.com/Su3037/learning-clustering/tree/main/course-playbook">课程制作手册</a>。</p>
+<p><button class="btn quiet small" type="button" data-pref="reduceMotion">减少动态</button> <button class="btn quiet small" type="button" data-pref="sound">声音</button> · 内容版本 2026.10.30-1</p>
+</div></footer>
+<script type="module">import { initShell } from '../assets/core.js'; initShell();</script>
+
+</body>
+</html>

@@ -1,0 +1,220 @@
+{
+ "status": "ready",
+ "moduleId": "m06-sequence-pair",
+ "slides": [
+  {
+   "slideId": "m06-title",
+   "pageNumber": 1,
+   "pageCount": 14,
+   "title": "两行字母",
+   "image": "p01.jpg",
+   "thumb": "t01.jpg",
+   "alt": "两行字母：",
+   "transcript": "这一课讲序列对：用两个排列表示一张布图，再用约束图和最长路径把它变成坐标。全课用教师课程的五块例子，固定边界 10 × 8。",
+   "videoAnchor": null,
+   "sceneId": "k00-title",
+   "objectiveIds": []
+  },
+  {
+   "slideId": "m06-problem",
+   "pageNumber": 2,
+   "pageCount": 14,
+   "title": "问题定义",
+   "image": "p02.jpg",
+   "thumb": "t02.jpg",
+   "alt": "问题定义：输入：五个矩形块（固定宽高、不旋转），固定边界 10 × 8，排列 pos 与 neg；输出：每块左下角 (x, y)；约束图 H、V；包围盒与指标；约定：原点在左下，y 向上（教师 common/pack.py）；为什么不直接搜坐标：绝大多数坐标组合都重叠",
+   "transcript": "输入是五个矩形块和一个 10 乘 8 的边界，再加上两个排列。输出是每块左下角的坐标。原点在左下角，y 向上。直接在坐标上搜索很难，因为随便改一个数，块就可能重叠；序列对把相对位置写成离散的排列。",
+   "videoAnchor": null,
+   "sceneId": "k01-problem",
+   "objectiveIds": [
+    "o1"
+   ]
+  },
+  {
+   "slideId": "m06-rule",
+   "pageNumber": 3,
+   "pageCount": 14,
+   "title": "两个排列，四种关系",
+   "image": "p03.jpg",
+   "thumb": "t03.jpg",
+   "alt": "两个排列，四种关系：两个序列都在前 → 在左边：x[b] ≥ x[a] + w[a]；pos 在前、neg 在后 → 在下边：y[b] ≥ y[a] + h[a]；记法：次序相同 → 左右；次序相反 → 上下；另一种约定把“下”写成“上”：等于交换 pos 与 neg",
+   "transcript": "任意两块在两个排列里各有一个先后。两个序列里次序相同，就是左右关系，在前的在左；次序相反，就是上下关系，pos 里在前的在下面。有些教材规定成在上面，那等于把两个序列交换。",
+   "videoAnchor": null,
+   "sceneId": "k02-rule",
+   "objectiveIds": [
+    "o2"
+   ]
+  },
+  {
+   "slideId": "m06-two",
+   "pageNumber": 4,
+   "pageCount": 14,
+   "title": "最小的例子：两块",
+   "image": "p04.jpg",
+   "thumb": "t04.jpg",
+   "alt": "最小的例子：两块：A 3 × 2，B 2 × 3；pos = A B，neg = A B：A 在 B 左边，B 从 x = 3 开始；pos = A B，neg = B A：A 在 B 下边，B 从 y = 2 开始；每一对块恰好一种关系，不会漏、不会重",
+   "transcript": "两块的例子最容易看清规则。两个序列都是 A B，A 在 B 左边，B 从 x 等于 3 开始；neg 改成 B A，A 在 B 下边，B 从 y 等于 2 开始。",
+   "videoAnchor": null,
+   "sceneId": null,
+   "objectiveIds": [
+    "o2"
+   ]
+  },
+  {
+   "slideId": "m06-pairs",
+   "pageNumber": 5,
+   "pageCount": 14,
+   "title": "教师示例的十对关系",
+   "image": "p05.jpg",
+   "thumb": "t05.jpg",
+   "alt": "教师示例的十对关系：pos = A B C E D，neg = D A B C E；5 块 → 5 × 4 / 2 = 10 对；6 对左右：A、B、C、E 排成一行；4 对上下：D 在其余四块上面",
+   "transcript": "把教师示例的十对块逐一写出来。A、B、C、E 两两之间次序都相同，是左右关系；D 在 neg 里排第一、在 pos 里排最后，和其他四块的次序都相反，所以四块都在 D 下面。",
+   "videoAnchor": null,
+   "sceneId": "k03-graphs",
+   "objectiveIds": [
+    "o2",
+    "o3"
+   ]
+  },
+  {
+   "slideId": "m06-graphs",
+   "pageNumber": 6,
+   "pageCount": 14,
+   "title": "约束图 H 与 V",
+   "image": "p06.jpg",
+   "thumb": "t06.jpg",
+   "alt": "约束图 H 与 V：H：i 在 j 左边 → 边 i → j，x[j] ≥ x[i] + w[i]；V：i 在 j 下边 → 边 i → j，y[j] ≥ y[i] + h[i]；每对只进一张图：H 6 条，V 4 条；每条边都从 pos 中靠前的块指向靠后的块 → 无环",
+   "transcript": "左右关系进水平约束图 H，上下关系进竖直约束图 V。每条边是一条不等式：后面的块要让开前面的块。左边和下边都要求在 pos 里在前，所以沿着边走，pos 中的位置只增不减，不会有环。",
+   "videoAnchor": null,
+   "sceneId": "k03-graphs",
+   "objectiveIds": [
+    "o3"
+   ]
+  },
+  {
+   "slideId": "m06-why-max",
+   "pageNumber": 7,
+   "pageCount": 14,
+   "title": "为什么加前驱的宽，为什么取最大",
+   "image": "p07.jpg",
+   "thumb": "t07.jpg",
+   "alt": "为什么加前驱的宽，为什么取最大：边 i → j：j 的左边缘不越过 i 的右边缘 x[i] + w[i]；每条入边都是一个下界，必须全部成立；满足全部下界的最小值 = 最大的下界；三块例子：取最小 2，B 与 A 重叠",
+   "transcript": "一条边说的是：j 的左边缘不能越过 i 的右边缘，所以加的是前驱 i 的宽。每条入边都是一个下界，全部要成立，所以取最大。三块的例子里，B 的候选是 3 和 2，取最小的 2，B 会压在 A 上。",
+   "videoAnchor": null,
+   "sceneId": "a02-max",
+   "objectiveIds": [
+    "o4"
+   ]
+  },
+  {
+   "slideId": "m06-dp-x",
+   "pageNumber": 8,
+   "pageCount": 14,
+   "title": "按 pos 顺序算 x",
+   "image": "p08.jpg",
+   "thumb": "t08.jpg",
+   "alt": "按 pos 顺序算 x：x[A] = 0，x[B] = 3，x[C] = 5；x[E] = max(0 + 3, 3 + 2, 5 + 2) = 7；x[D] = 0：D 没有水平前驱；这就是 H 上的最长路径",
+   "transcript": "按 pos 的顺序逐块算 x。A 没有前驱，是 0；B 让开 A，是 3；C 让开 A 和 B，取最大 5；E 的三个候选是 3、5、7，取 7。D 和谁都是上下关系，x 等于 0。",
+   "videoAnchor": null,
+   "sceneId": "k04-dpx",
+   "objectiveIds": [
+    "o4"
+   ]
+  },
+  {
+   "slideId": "m06-dp-y",
+   "pageNumber": 9,
+   "pageCount": 14,
+   "title": "再算 y",
+   "image": "p09.jpg",
+   "thumb": "t09.jpg",
+   "alt": "再算 y：A、B、C、E 没有竖直前驱：y = 0；y[D] = max(2, 3, 2, 2) = 3：最高的 B 说了算；教师 goldens.py 里的 GOLDEN_PACK（D 在 y = 2）是另一份示意图，不是这个序列对的结果",
+   "transcript": "竖直方向只有 D 有前驱：A、B、C、E 都在它下面。候选分别是它们的高 2、3、2、2，取最大 3。注意教师 goldens.py 里另有一份 GOLDEN_PACK 把 D 放在 y 等于 2，那不是这个序列对算出来的结果。",
+   "videoAnchor": null,
+   "sceneId": "k05-dpy",
+   "objectiveIds": [
+    "o4"
+   ]
+  },
+  {
+   "slideId": "m06-packing",
+   "pageNumber": 10,
+   "pageCount": 14,
+   "title": "结果与四个问题",
+   "image": "p10.jpg",
+   "thumb": "t10.jpg",
+   "alt": "结果与四个问题：完整：5 块各一次；不重叠：序列对保证；装得下：包围盒 9 × 4 ≤ 10 × 8；紧凑：36，空余 13，利用率 63.89 %",
+   "transcript": "算完后有四个不同的问题：完整吗，重叠吗，装得下吗，紧不紧。教师示例全部满足，包围盒 9 乘 4，面积 36，利用率约 63.89%。",
+   "videoAnchor": null,
+   "sceneId": "k06-metrics",
+   "objectiveIds": [
+    "o5"
+   ]
+  },
+  {
+   "slideId": "m06-overflow",
+   "pageNumber": 11,
+   "pageCount": 14,
+   "title": "合法 ≠ 装得下；常量与变量",
+   "image": "p11.jpg",
+   "thumb": "t11.jpg",
+   "alt": "合法 ≠ 装得下；常量与变量：pos = neg = A B C D E → 12 × 3，太宽；neg 反过来 → 3 × 10，太高；14,400 个序列对：全部不重叠，13,680 装得下，720 装不下；边界空余 57、密度 28.75 %：对所有排列都一样",
+   "transcript": "两个排列完全相同，五块排成一行，宽 12，装不下；neg 反过来，叠成一列，高 10，也装不下。它们都不重叠。全部 14,400 个序列对里有 720 个装不下。边界空余 57 和密度 28.75% 对每一个序列对都一样，不能拿来比较；会变的是包围盒。",
+   "videoAnchor": null,
+   "sceneId": "k07-overflow",
+   "objectiveIds": [
+    "o5"
+   ]
+  },
+  {
+   "slideId": "m06-encoding",
+   "pageNumber": 12,
+   "pageCount": 14,
+   "title": "改一个排列会怎样",
+   "image": "p12.jpg",
+   "thumb": "t12.jpg",
+   "alt": "改一个排列会怎样：pos 中交换 E、D：关系变了，坐标不变；neg 中交换 D、A：包围盒仍是 9 × 4，布局却变了；14,400 个序列对只有 9,056 种布局；教师示例的布局有 3 种写法；搜索（模拟退火）就在这些邻居之间走",
+   "transcript": "改一个排列，不一定移动任何块。pos 中交换 E 和 D，E 与 D 的关系变了，但两种关系在这张布局里都成立，坐标一模一样。反过来，包围盒相同，布局也可能不同。五块的 14,400 个序列对只有 9,056 种布局。",
+   "videoAnchor": null,
+   "sceneId": "a05-twins",
+   "objectiveIds": [
+    "o6"
+   ]
+  },
+  {
+   "slideId": "m06-pseudo",
+   "pageNumber": 13,
+   "pageCount": 14,
+   "title": "伪代码与代价",
+   "image": "p13.jpg",
+   "thumb": "t13.jpg",
+   "alt": "伪代码与代价：第 1 行：列出全部问题；第 2–4 行：每对一条边；第 5–7 行：按 pos 做两遍 DP；第 8 行：四个问题分开报告；代价 O(n²)；FAST-SP 可到 O(n log n)（本课未实现）",
+   "transcript": "伪代码八行：校验、逐对建边、按 pos 顺序做 x 和 y 两遍动态规划、报告。对数是 n(n−1)/2，动态规划也看这么多条边，所以是 O(n²)。文献里有更快的算法，本课没有实现。",
+   "videoAnchor": null,
+   "sceneId": null,
+   "objectiveIds": [
+    "o6"
+   ]
+  },
+  {
+   "slideId": "m06-limits",
+   "pageNumber": 14,
+   "pageCount": 14,
+   "title": "局限与下一步",
+   "image": "p14.jpg",
+   "thumb": "t14.jpg",
+   "alt": "局限与下一步：",
+   "transcript": "最后说局限。本课只讲怎样把序列对变成坐标：尺寸固定、不旋转，不负责找好的序列对，也没有连线、时序与电源模型。下一课在序列对上做模拟退火。序列对出自 Murata 等人 1996 年的论文。",
+   "videoAnchor": null,
+   "sceneId": null,
+   "objectiveIds": [
+    "o6"
+   ]
+  }
+ ],
+ "pdf": "m06-sequence-pair.pdf",
+ "pptx": "m06-sequence-pair.pptx",
+ "contentVersion": "2026.10.30-1",
+ "lang": "zh",
+ "aspectNote": "16:9 是本课程的设计选择（与影片一致、适合投影），不是教师指定的比例。PDF 页码与网页 p/total 完全一致；PPTX 中文字、形状与表格均可编辑，讲稿在备注里。"
+}

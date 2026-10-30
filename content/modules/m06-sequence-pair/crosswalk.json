@@ -1,0 +1,11 @@
+{
+  "moduleId": "m06-sequence-pair",
+  "objectives": [
+    {"id": "o1", "sections": ["m06-problem"], "sceneIds": ["p-die", "k01-problem"], "slideIds": ["m06-problem"], "experiment": "预设“教师示例”：看 10 × 8 边界里的五块与它们的坐标", "challenges": [], "python": ["metrics"]},
+    {"id": "o2", "sections": ["m06-rule"], "sceneIds": ["p-rule", "k02-rule"], "slideIds": ["m06-rule", "m06-two", "m06-pairs"], "experiment": "第 2–11 步：每对块的 pos / neg 位置与关系；改坏一个排列看合法性报告", "challenges": ["c1", "c2"], "python": ["validate_pair", "relation"]},
+    {"id": "o3", "sections": ["m06-graphs"], "sceneIds": ["p-graphs", "k03-graphs", "a03-acyclic"], "slideIds": ["m06-graphs"], "experiment": "约束图视图：点一条边看它的不等式", "challenges": ["c3"], "python": ["build_graphs"]},
+    {"id": "o4", "sections": ["m06-dp"], "sceneIds": ["p-dp", "p-max", "k04-dpx", "k05-dpy", "a01-longest", "a02-max"], "slideIds": ["m06-why-max", "m06-dp-x", "m06-dp-y"], "experiment": "DP 候选表：E 的三个候选 3、5、7 取 7", "challenges": ["c4", "c5"], "python": ["longest_path"]},
+    {"id": "o5", "sections": ["m06-metrics"], "sceneIds": ["p-pack", "p-overflow", "k06-metrics", "k07-overflow", "a04-fit"], "slideIds": ["m06-packing", "m06-overflow"], "experiment": "预设“一字排开”与“一列叠高”：不重叠但装不下", "challenges": ["c6"], "python": ["metrics"]},
+    {"id": "o6", "sections": ["m06-encoding", "m06-pseudocode", "m06-limits"], "sceneIds": ["p-twin", "k08-summary", "a05-twins", "a06-mirror", "a07-cost"], "slideIds": ["m06-encoding", "m06-pseudo", "m06-limits"], "experiment": "“随机邻居”按钮与预设“同一布局的另一种写法”", "challenges": ["c7"], "python": ["validate_pair", "relation", "build_graphs", "longest_path", "metrics"]}
+  ]
+}
