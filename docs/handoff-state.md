@@ -27,4 +27,4 @@ Last updated: 2026-10-30 (session building the lesson from the research pack).
 - https://su3037.github.io/floorplanning-lesson6-sequence-pair/
 
 ## Next action
-Post `submission-draft.md` on issue #22 only when the author says so.
+None. The reply on issue #22 was posted on 2026-11-03.
